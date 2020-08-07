@@ -1,0 +1,29 @@
+{
+  "name": "ftc_bud",
+  "version": "1.0.0",
+  "description": "Bud App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oso1248/ftc_bud.git"
+  },
+  "author": "Adam Coulson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oso1248/ftc_bud/issues"
+  },
+  "homepage": "https://github.com/oso1248/ftc_bud#readme",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1",
+    "knex": "^0.21.2",
+    "pg": "^8.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
