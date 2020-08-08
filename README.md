@@ -17,4 +17,7 @@ Application for managing materials, inventories and projections of usage.
 [x] Problems migrating. Moved knex.js file to /root updated file paths in knex.js Worked!
 [X] Postgres deployed to heroku! My First Deploy!!! heroku run knex migrate:latest -a bud-materials
 [X] Set up users table and register a user
-[] Set up bcrypt to hash passowrds create login route
+## working in branch dev
+[X] Install bcryptjs
+[X] Set up bcryptjs to hash passwords create login route
+[] Set up cookies and sessions for persistent login
