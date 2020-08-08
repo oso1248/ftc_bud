@@ -1,18 +1,12 @@
 const express = require('express')
-const server = express()
-const PORT = process.env.PORT || 5000
-const dbCall = require('./back/models/dbAPI')
+const dbCall = require('../models/uomQuery')
 
-// Start server
-server.use(express.json())
-server.listen(PORT, () => {
-  console.log(`\n\n***Server listening on port: ${PORT}***\n\n`)
-})
+const router = express.Router()
 
+// end points = /api/uom
 
-// UOM CRUD
 // create
-server.post('/api/uom', (req, res) => {
+router.post('/', (req, res) => {
   const jsonData = req.body
   dbCall.UOMadd(jsonData)
     .then(uom => {
@@ -23,7 +17,7 @@ server.post('/api/uom', (req, res) => {
     })
 })
 // read
-server.get('/api/uom', (req, res) => {
+router.get('/', (req, res) => {
   dbCall.UOMfindAll()
     .then(uom => {
       res.status(200).json(uom)
@@ -32,7 +26,7 @@ server.get('/api/uom', (req, res) => {
       res.status(500).json({mgs: 'error fetching UOMs'})
     })
 })
-server.get('/api/uom/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   const { id } = req.params
   dbCall.UOMfindById(id)
     .then(uom => {
@@ -43,7 +37,7 @@ server.get('/api/uom/:id', (req, res) => {
     })
 })
 // update
-server.patch('/api/uom/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
   const { id } = req.params
   const changes = req.body
   dbCall.UOMupdate(id, changes)
@@ -55,7 +49,7 @@ server.patch('/api/uom/:id', (req, res) => {
   })
 })
 // delete
-server.delete('/api/uom/:id', (req,res) => {
+router.delete('/:id', (req,res) => {
   const { id } = req.params
   dbCall.UOMdelete(id)
     .then(count => {
@@ -70,12 +64,4 @@ server.delete('/api/uom/:id', (req,res) => {
     })
 })
 
-
-
-
-
-
-// test server in browser
-server.get('/', (req, res) => {
-  res.json({message: 'hello world'})
-})
+module.exports = router
