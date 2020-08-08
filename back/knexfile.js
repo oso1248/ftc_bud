@@ -12,27 +12,20 @@ module.exports = {
     },
   },
 
-  test: {
-    client: 'pg',
-    connection:'postgres://localhost/<examples_test>',
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds/test'
-    },
-    useNullAsDefault: true
-  },
-
   production: {
     client: 'pg',
+    useNullAsDefault: true,
     connection: process.env.DATABASE_URL,
+    pool: {
+      min: 2,
+      max: 10
+    },
     migrations: {
+      tablename: 'knex_migrations',
       directory: './db/migrations'
     },
     seeds: {
       directory: './db/seeds/production'
     },
-    useNullAsDefault: true
   }
 }

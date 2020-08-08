@@ -9,4 +9,6 @@ Application for managing materials, inventories and projections of usage.
 [X] Create tables for commodity in database - brewing - commodity, uom, type, container
       supplier, enviro, location
 [X] Create CRUDs for table mtl_uom in dbAPI and server.js
-[] Clean up index.js - set up express routes -> new server.js + routes folder/files
+[X] Clean up index.js - set up express routes -> new server.js + routes folder/files
+[X] set up environment variable - .env file - npm install dotenv
+[X] deploy to heroku - set up env variables on heroku
