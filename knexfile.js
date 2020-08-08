@@ -5,10 +5,10 @@ module.exports = {
     useNullAsDefault: true,
     connection:'postgres://localhost/brewing',
     migrations: {
-      directory: './db/migrations'
+      directory: './back/db/migrations'
     },
     seeds: {
-      directory: './db/seeds/dev'
+      directory: './back/db/seeds/dev'
     },
   },
 
@@ -22,7 +22,7 @@ module.exports = {
     },
     migrations: {
       tablename: 'knex_migrations',
-      directory: './db/migrations/'
+      directory: './back/db/migrations'
     },
     seeds: {
       directory: './db/seeds/production'
