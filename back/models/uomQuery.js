@@ -13,6 +13,7 @@ module.exports = {
 
 // create
 async function UOMadd(jsonData){
+  // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
   const rtn = await db('mtl_uom').insert(jsonData, ['id'])
   const {id} = rtn[0]
   return UOMfindById(id)
@@ -41,6 +42,13 @@ function UOMdelete(id) {
   return db('mtl_uom')
   .where({id: id})
   .del()
+}
+
+
+async function addMessage(message, lesson_id) {
+  return await db('messages')
+  .where({ lesson_id })
+  .insert(message, ['enter fields to return', '', ''])
 }
 
 // example of join

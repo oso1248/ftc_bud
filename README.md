@@ -12,5 +12,9 @@ Application for managing materials, inventories and projections of usage.
 [X] Clean up index.js - set up express routes -> new server.js + routes folder/files
 [X] set up environment variable - .env file - npm install dotenv
 [X] Deploy to heroku - set up env variables on heroku
-[] Install heroku cli
-[} Migrate tables to postgres on heroku]
+[X] Install heroku cli
+[X] Migrate tables to postgres on heroku]
+[x] Problems migrating. Moved knex.js file to /root updated file paths in knex.js Worked!
+[X] Postgres deployed to heroku! My First Deploy!!! heroku run knex migrate:latest -a bud-materials
+[X] Set up users table and register a user
+[] Set up bcrypt to hash passowrds create login route
