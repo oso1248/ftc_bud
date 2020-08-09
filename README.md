@@ -21,3 +21,4 @@ Application for managing materials, inventories and projections of usage.
 [X] Install bcryptjs
 [X] Set up bcryptjs to hash passwords create login route
 [] Set up cookies and sessions for persistent login
+[] Create protected routes
