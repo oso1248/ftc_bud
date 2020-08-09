@@ -51,6 +51,7 @@ exports.up = function(knex) {
     tbl.increments()
     tbl.string('commodity', 50)
       .notNullable()
+      .unique()
     tbl.string('active', 5)
       .notNullable()
     tbl.string('sap', 50)

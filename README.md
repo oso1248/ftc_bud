@@ -22,3 +22,4 @@ Application for managing materials, inventories and projections of usage.
 [X] Set up cookies and sessions for persistent login using express-session
 [X] Create protected routes
 [] morgan, helmet and cors
+[] Added permissions column to user table for further restricted access
