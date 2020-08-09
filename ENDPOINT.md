@@ -7,11 +7,16 @@
   post:   / - {"uom": "gal"}  
   get:    /  
   get:    /:id  
-  patch:  /:id {"uom":"gal"}  
+  patch:  /:id - {"uom":"gal"}  
   delete: /:id
 
 ## /api/user
   get:    /  
   get:    /:id
 
-
+## /api/location
+  post:   / - {"location": "Brewhouse"}  
+  get:    /  
+  get:    /:id  
+  patch:  /:id - {"location":"Brewhouse"}  
+  delete: /:id
