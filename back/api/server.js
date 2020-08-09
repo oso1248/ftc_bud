@@ -10,8 +10,10 @@ const morgan = require('morgan') // remove for production dev dependency
 const authRouter = require('../auth/authRoutes')
 const userRouter = require('../routes/userRoutes')
 const uomRouter = require('../routes/uomRoutes')
+const enviroRouter = require('../routes/enviroRoutes')
 const locationRouter = require('../routes/locationRoutes')
-
+const containerRouter = require('../routes/containerRoutes')
+const supplierRouter = require('../routes/supplierRoutes')
 const restricted = require('../auth/restrictedMiddlewear')
 
 
@@ -44,7 +46,10 @@ server.get('/', (req, res) => {
 server.use('/api/auth', authRouter)
 server.use('/api/user', restricted, userRouter)
 server.use('/api/uom', restricted, uomRouter)
+server.use('/api/enviro', restricted, enviroRouter)
 server.use('/api/location', restricted, locationRouter)
+server.use('/api/container', restricted, containerRouter)
+server.use('/api/supplier', restricted, supplierRouter)
 
 
 module.exports = server
