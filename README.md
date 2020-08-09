@@ -23,3 +23,4 @@ Application for managing materials, inventories and projections of usage.
 [X] Create protected routes
 [] morgan, helmet and cors
 [] Added permissions column to user table for further restricted access
+[] Added ENDPOINT.md to track endpoints
