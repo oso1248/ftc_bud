@@ -1,7 +1,7 @@
 const express = require('express')
 const session = require('express-session')
-const helmet = require('helmet')
-const cors = require('cors')
+// const helmet = require('helmet')
+// const cors = require('cors')
 
 
 // const morgan = require('morgan') // remove for production dev dependency
@@ -34,9 +34,9 @@ const sessionConfig = {
 
 const server = express()
 server.use(express.json())
-server.use(helmet())
+// server.use(helmet())
 // server.use(morgan('dev')) // remove for production dev dependency
-server.use(cors())
+// server.use(cors())
 server.use(session(sessionConfig))
 
 
