@@ -21,11 +21,12 @@ module.exports = {
       max: 10
     },
     migrations: {
+
       tablename: 'knex_migrations',
       directory: './back/db/migrations'
     },
     seeds: {
-      directory: './db/seeds/production'
+      directory: './back/db/seeds/dev'
     },
   }
 }
