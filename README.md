@@ -21,6 +21,9 @@ Application for managing materials, inventories and projections of usage.
 [X] Set up bcryptjs to hash passwords create login route
 [X] Set up cookies and sessions for persistent login using express-session
 [X] Create protected routes
-[] morgan, helmet and cors
-[] Added permissions column to user table for further restricted access
-[] Added ENDPOINT.md to track endpoints
+[X] morgan, helmet and cors
+[X] Added permissions column to user table for further restricted access
+[X] Added ENDPOINT.md to track endpoints
+
+## Working in branch develop
+[X]dev branch merged and deleted

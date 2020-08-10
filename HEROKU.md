@@ -8,4 +8,6 @@
 [X] Add postgres in resources in heroku  
 [X] Update knex.js for postgres process.env.DATABASE_URL  
 [X] Set dbConfig.js DB_ENVIRONMENT variable on heroku Config Vars  
-[X] git commit changes for heroku to redeploy 
+[X] git commit changes for heroku to redeploy  
+[X] heroku run knex migrate:latest -a brewing-ftc  
+[] 
