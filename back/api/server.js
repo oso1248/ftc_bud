@@ -4,7 +4,7 @@ const helmet = require('helmet')
 const cors = require('cors')
 
 
-const morgan = require('morgan') // remove for production dev dependency
+// const morgan = require('morgan') // remove for production dev dependency
 
 
 const authRouter = require('../auth/authRoutes')
@@ -35,7 +35,7 @@ const sessionConfig = {
 const server = express()
 server.use(express.json())
 server.use(helmet())
-server.use(morgan('dev')) // remove for production dev dependency
+// server.use(morgan('dev')) // remove for production dev dependency
 server.use(cors())
 server.use(session(sessionConfig))
 
