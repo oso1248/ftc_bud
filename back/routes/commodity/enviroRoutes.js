@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/enviroQuery')
+const dbCall = require('../../models/commodity/enviroQuery')
 
 const router = express.Router()
 

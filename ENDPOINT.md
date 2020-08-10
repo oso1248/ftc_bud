@@ -41,3 +41,10 @@
   get:    /:id  
   patch:  /:id - {"company":"","contact":"","email":"","phone":"","address":"","note":""}  
   delete: /:id
+
+## /api/commodity
+  post:   / - {"commodity":"","active":"","sap":"","threshold":"","per_pallet":"","unit_total":"","note":"","uom_id":"","type_id":"","location_id":"","enviro_id":"","container_id":"","supplier_id":""}
+  get:    /  
+  get:    /:id  
+  patch:  /:id - 
+  delete: /:id

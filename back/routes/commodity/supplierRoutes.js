@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/supplierQuery')
+const dbCall = require('../../models/commodity/supplierQuery')
 
 const router = express.Router()
 

@@ -1,4 +1,4 @@
-const db = require('../db/dbConfig')
+const db = require('../../db/dbConfig')
 
 module.exports = {
   UOMadd,
@@ -7,7 +7,6 @@ module.exports = {
   UOMupdate,
   UOMdelete
 }
-
 // create
 async function UOMadd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
@@ -42,23 +41,3 @@ function UOMdelete(id) {
 }
 
 
-async function addMessage(message, lesson_id) {
-  return await db('messages')
-  .where({ lesson_id })
-  .insert(message, ['enter fields to return', '', ''])
-}
-
-// example of join
-function getMessages(lesson_id){
-  console.log(lesson_id)
-  return db('lessons as l')
-  .join('messages as m', 'l.lid', '=', 'm.lid')
-  .select(
-    'l.lid as LessonID',
-    'l.name as LessonName',
-    'm.mid as MessageID',
-    'm.sender as Sender',
-    'm.text as Message'
-  )
-  .where('m.lid', lesson_id)
-}

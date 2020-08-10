@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/userQuery')
+const dbCall = require('../models/commodity/userQuery')
 const bcrypt = require('bcryptjs')
 
 const router = express.Router()

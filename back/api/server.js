@@ -8,12 +8,14 @@ const morgan = require('morgan') // remove for production dev dependency
 
 
 const authRouter = require('../auth/authRoutes')
-const userRouter = require('../routes/userRoutes')
-const uomRouter = require('../routes/uomRoutes')
-const enviroRouter = require('../routes/enviroRoutes')
-const locationRouter = require('../routes/locationRoutes')
-const containerRouter = require('../routes/containerRoutes')
-const supplierRouter = require('../routes/supplierRoutes')
+const userRouter = require('../routes/commodity/userRoutes')
+const uomRouter = require('../routes/commodity/uomRoutes')
+const enviroRouter = require('../routes/commodity/enviroRoutes')
+const locationRouter = require('../routes/commodity/locationRoutes')
+const containerRouter = require('../routes/commodity/containerRoutes')
+const supplierRouter = require('../routes/commodity/supplierRoutes')
+const commodityRouter = require('../routes/commodity/commodityRoutes')
+const typeRouter = require('../routes/commodity/typeRoutes')
 const restricted = require('../auth/restrictedMiddlewear')
 
 
@@ -50,6 +52,8 @@ server.use('/api/enviro', restricted, enviroRouter)
 server.use('/api/location', restricted, locationRouter)
 server.use('/api/container', restricted, containerRouter)
 server.use('/api/supplier', restricted, supplierRouter)
+server.use('/api/commodity', restricted, commodityRouter)
+server.use('/api/type', restricted, typeRouter)
 
 
 module.exports = server

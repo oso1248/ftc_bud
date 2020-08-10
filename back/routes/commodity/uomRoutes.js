@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/uomQuery')
+const dbCall = require('../../models/commodity/uomQuery')
 
 const router = express.Router()
 

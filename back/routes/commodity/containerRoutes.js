@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/containerQuery')
+const dbCall = require('../../models/commodity/containerQuery')
 
 const router = express.Router()
 
