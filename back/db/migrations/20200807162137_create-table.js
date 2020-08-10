@@ -68,13 +68,11 @@ exports.up = function(knex) {
     tbl.string('sap', 50)
       .notNullable()
     tbl.integer('threshold')
-      .notNullable()
     tbl.integer('per_pallet')
       .notNullable()
     tbl.integer('unit_total')
       .notNullable()
     tbl.string('note', 250)
-      .notNullable()
     tbl.timestamps(true, true)
     
     // foreign keys
