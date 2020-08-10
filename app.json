@@ -1,0 +1,6 @@
+{
+  "name": "project name",
+  "description": "project description",
+  "logo": "http://node-js-sample.herokuapp.com/node.svg",
+  "image": "heroku/nodejs"
+}
