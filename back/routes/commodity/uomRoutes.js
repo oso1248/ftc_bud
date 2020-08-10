@@ -1,5 +1,5 @@
 const express = require('express')
-const dbCall = require('../models/uomQuery')
+const dbCall = require('../../models/commodity/uomQuery')
 
 const router = express.Router()
 
@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching UOMs'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.UOMfindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.UOMfindById(name)
     .then(uom => {
       res.status(200).json(uom)
     })
@@ -37,10 +37,10 @@ router.get('/:id', (req, res) => {
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.UOMupdate(id, changes)
+  dbCall.UOMupdate(name, changes)
   .then(uom => {
     res.status(200).json(uom)
   })
@@ -49,9 +49,9 @@ router.patch('/:id', (req, res) => {
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
-  dbCall.UOMdelete(id)
+router.delete('/:name', (req,res) => {
+  const { name } = req.params
+  dbCall.UOMdelete(name)
     .then(count => {
       if(count > 0){
         res.status(200).json({msg: 'UOM deleted'})

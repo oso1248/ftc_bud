@@ -5,36 +5,47 @@ exports.up = function(knex) {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('uom', 25)
       .notNullable()
+      .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_type', tbl => {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('type', 25)
       .notNullable()
+      .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_location', tbl => {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('location', 25)
       .notNullable()
+      .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_enviro', tbl => {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('enviro', 25)
       .notNullable()
+      .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_container', tbl => {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('container', 25)
       .notNullable()
+      .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_supplier', tbl => {
     tbl.increments() // sets to 'id' on initialize
     tbl.string('company', 100)
       .notNullable()
+      .unique()
     tbl.string('contact', 100)
       .notNullable()
     tbl.string('email', 100)
@@ -51,6 +62,7 @@ exports.up = function(knex) {
     tbl.increments()
     tbl.string('commodity', 50)
       .notNullable()
+      .unique()
     tbl.string('active', 5)
       .notNullable()
     tbl.string('sap', 50)
