@@ -11,14 +11,14 @@ module.exports = {
 // create
 async function containerAdd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_container').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return containerFindById(id)
+  const rtn = await db('mtl_container').insert(jsonData, ['container'])
+  const { container } = rtn[0]
+  return containerFindById(container)
 }
 // read
-function containerFindById(id) {
+function containerFindById(container) {
   return db('mtl_container')
-  .where({id: id})
+  .where({container: container})
   .first()
 }
 function containerFindAll() {
@@ -26,24 +26,17 @@ function containerFindAll() {
     .orderBy('container')
 }
 // update
-function containerUpdate(id, changes){
+function containerUpdate(container, changes){
   return db('mtl_container')
-    .where({id: id})
+    .where({container: container})
     .update(changes)
     .then(() => {
-    return containerFindById(id)
+    return containerFindById(container)
     })
 }
 // delete
-function containerDelete(id) {
+function containerDelete(container) {
   return db('mtl_container')
-  .where({id: id})
+  .where({container: container})
   .del()
-}
-
-
-async function addMessage(message, lesson_id) {
-  return await db('messages')
-  .where({ lesson_id: lesson_id })
-  .insert(message, ['enter fields to return', '', ''])
 }

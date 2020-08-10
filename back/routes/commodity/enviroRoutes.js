@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching enviro'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.enviroFindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.enviroFindById(name)
     .then(enviro => {
       res.status(200).json(enviro)
     })
@@ -37,10 +37,10 @@ router.get('/:id', (req, res) => {
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.enviroUpdate(id, changes)
+  dbCall.enviroUpdate(name, changes)
   .then(enviro => {
     res.status(200).json(enviro)
   })
@@ -49,9 +49,9 @@ router.patch('/:id', (req, res) => {
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
-  dbCall.enviroDelete(id)
+router.delete('/:name', (req,res) => {
+  const { name } = req.params
+  dbCall.enviroDelete(name)
     .then(count => {
       if(count > 0){
         res.status(200).json({msg: 'enviro deleted'})

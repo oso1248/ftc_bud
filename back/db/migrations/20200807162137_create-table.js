@@ -6,6 +6,7 @@ exports.up = function(knex) {
     tbl.string('uom', 25)
       .notNullable()
       .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_type', tbl => {
@@ -13,6 +14,7 @@ exports.up = function(knex) {
     tbl.string('type', 25)
       .notNullable()
       .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_location', tbl => {
@@ -20,6 +22,7 @@ exports.up = function(knex) {
     tbl.string('location', 25)
       .notNullable()
       .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_enviro', tbl => {
@@ -27,6 +30,7 @@ exports.up = function(knex) {
     tbl.string('enviro', 25)
       .notNullable()
       .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_container', tbl => {
@@ -34,6 +38,7 @@ exports.up = function(knex) {
     tbl.string('container', 25)
       .notNullable()
       .unique()
+    tbl.string('note', 256)
     tbl.timestamps(true, true)
   })
   .createTable('mtl_supplier', tbl => {

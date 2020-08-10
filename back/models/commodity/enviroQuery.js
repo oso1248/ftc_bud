@@ -11,14 +11,14 @@ module.exports = {
 // create
 async function enviroAdd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_enviro').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return enviroFindById(id)
+  const rtn = await db('mtl_enviro').insert(jsonData, ['enviro'])
+  const {enviro} = rtn[0]
+  return enviroFindById(enviro)
 }
 // read
-function enviroFindById(id) {
+function enviroFindById(enviro) {
   return db('mtl_enviro')
-  .where({id: id})
+  .where({enviro: enviro})
   .first()
 }
 function enviroFindAll() {
@@ -26,24 +26,17 @@ function enviroFindAll() {
     .orderBy('enviro')
 }
 // update
-function enviroUpdate(id, changes){
+function enviroUpdate(enviro, changes){
   return db('mtl_enviro')
-    .where({id: id})
+    .where({enviro: enviro})
     .update(changes)
     .then(() => {
-    return enviroFindById(id)
+    return enviroFindById(enviro)
     })
 }
 // delete
-function enviroDelete(id) {
-  return db('mtl_location')
-  .where({id: id})
+function enviroDelete(enviro) {
+  return db('mtl_enviro')
+  .where({enviro: enviro})
   .del()
-}
-
-
-async function addMessage(message, lesson_id) {
-  return await db('messages')
-  .where({ lesson_id: lesson_id })
-  .insert(message, ['enter fields to return', '', ''])
 }

@@ -11,14 +11,14 @@ module.exports = {
 // create
 async function locationAdd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_location').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return locationFindById(id)
+  const rtn = await db('mtl_location').insert(jsonData, ['location'])
+  const {location} = rtn[0]
+  return locationFindById(location)
 }
 // read
-function locationFindById(id) {
+function locationFindById(location) {
   return db('mtl_location')
-  .where({id: id})
+  .where({location: location})
   .first()
 }
 function locationFindAll() {
@@ -26,24 +26,17 @@ function locationFindAll() {
     .orderBy('location')
 }
 // update
-function locationUpdate(id, changes){
+function locationUpdate(location, changes){
   return db('mtl_location')
-    .where({id: id})
+    .where({location: location})
     .update(changes)
     .then(() => {
-    return locationFindById(id)
+    return locationFindById(location)
     })
 }
 // delete
-function locationDelete(id) {
+function locationDelete(location) {
   return db('mtl_location')
-  .where({id: id})
+  .where({location: location})
   .del()
-}
-
-
-async function addMessage(message, lesson_id) {
-  return await db('messages')
-  .where({ lesson_id: lesson_id })
-  .insert(message, ['enter fields to return', '', ''])
 }

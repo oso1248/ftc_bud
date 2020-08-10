@@ -11,14 +11,14 @@ module.exports = {
 // create
 async function typeAdd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_type').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return typeFindById(id)
+  const rtn = await db('mtl_type').insert(jsonData, ['type'])
+  const {type} = rtn[0]
+  return typeFindById(type)
 }
 // read
-function typeFindById(id) {
+function typeFindById(type) {
   return db('mtl_type')
-  .where({id: id})
+  .where({type: type})
   .first()
 }
 function typeFindAll() {
@@ -26,18 +26,18 @@ function typeFindAll() {
     .orderBy('type')
 }
 // update
-function typeUpdate(id, changes){
+function typeUpdate(type, changes){
   return db('mtl_type')
-    .where({id: id})
+    .where({type: type})
     .update(changes)
     .then(() => {
-    return typeFindById(id)
+    return typeFindById(type)
     })
 }
 // delete
-function typeDelete(id) {
+function typeDelete(type) {
   return db('mtl_type')
-  .where({id: id})
+  .where({type: type})
   .del()
 }
 

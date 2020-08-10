@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching commodity'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.commodityFindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.commodityFindById(name)
     .then(commodity => {
       res.status(200).json(commodity)
     })
@@ -37,10 +37,10 @@ router.get('/:id', (req, res) => {
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.commodityUpdate(id, changes)
+  dbCall.commodityUpdate(name, changes)
   .then(commodity => {
     res.status(200).json(commodity)
   })

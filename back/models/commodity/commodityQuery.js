@@ -18,11 +18,11 @@ async function commodityAdd(jsonData){
   await supplier(jsonData)
   let query = [jsonData]
   const rtn = await db('mtl_commodity').insert(query, ['commodity'])
-  const { name }= rtn[0]
-  return commodityFindById(name)
+  const { commodity }= rtn[0]
+  return commodityFindById(commodity)
 }
 // update
-async function commodityUpdate(name, changes){
+async function commodityUpdate(commodity, changes){
   await uom(changes)  
   await type(changes)
   await location(changes)
@@ -30,10 +30,10 @@ async function commodityUpdate(name, changes){
   await container(changes)
   await supplier(changes)
   return db('mtl_commodity')
-    .where({commodity: name})
+    .where({commodity: commodity})
     .update(changes)
     .then(() => {
-    return commodityFindById(name)
+    return commodityFindById(commodity)
     })
 }
 // function to convert name to id number

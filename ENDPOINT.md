@@ -8,43 +8,50 @@
   get:    /:id
 
 ## /api/uom
-  post:   / - {"uom": ""}  
+  post:   / - {"uom":"","note":""}  
   get:    /  
-  get:    /:id  
-  patch:  /:id - {"uom":""}  
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"note":""}  
+  delete: /:name
 
 ## /api/enviro
-  post:   / - {"enviro": ""}  
+  post:   / - {"enviro":"","note":""}  
   get:    /  
-  get:    /:id  
-  patch:  /:id - {"enviro":""}  
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"note":""}  
+  delete: /:name
 
 ## /api/location
-  post:   / - {"location": ""}  
+  post:   / - {"location":"","note":""}  
   get:    /  
-  get:    /:id  
-  patch:  /:id - {"location":""}  
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"note":""}  
+  delete: /:name
 
 ## /api/container
-  post:   / - {"container": ""}  
+  post:   / - {"container":"","note":""}  
   get:    /  
-  get:    /:id  
-  patch:  /:id - {"container":""}  
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"note":""}  
+  delete: /:name
+
+  ## /api/type
+  post:   / - {"type":"","note":""}  
+  get:    /  
+  get:    /:name  
+  patch:  /:name - {"note":""}  
+  delete: /:name
 
 ## /api/supplier
   post:   / - {"company":"","contact":"","email":"","phone":"","address":"","note":""}  
   get:    /  
-  get:    /:id  
-  patch:  /:id - {"company":"","contact":"","email":"","phone":"","address":"","note":""}  
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"contact":"","email":"","phone":"","address":"","note":""}  
+  delete: /:name
 
 ## /api/commodity
   post:   / - {"commodity":"","active":"","sap":"","threshold":"","per_pallet":"","unit_total":"","note":"","uom_id":"","type_id":"","location_id":"","enviro_id":"","container_id":"","supplier_id":""}
   get:    /  
-  get:    /:id  
-  patch:  /:id - 
-  delete: /:id
+  get:    /:name  
+  patch:  /:name - {"active":"","sap":"","threshold":"","per_pallet":"","unit_total":"","note":"","uom_id":"","type_id":"","location_id":"","enviro_id":"","container_id":"","supplier_id":""}
+  delete: /:name

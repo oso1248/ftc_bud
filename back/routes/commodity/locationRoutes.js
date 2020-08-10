@@ -26,21 +26,21 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching locations'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.locationFindById(id)
-    .then(uom => {
-      res.status(200).json(uom)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.locationFindById(name)
+    .then(location => {
+      res.status(200).json(location)
     })
     .catch(err => {
       res.status(500).json({mgs: 'error fetching location'})
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.locationUpdate(id, changes)
+  dbCall.locationUpdate(name, changes)
   .then(uom => {
     res.status(200).json(uom)
   })
@@ -49,9 +49,9 @@ router.patch('/:id', (req, res) => {
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
-  dbCall.locationDelete(id)
+router.delete('/:name', (req,res) => {
+  const { name } = req.params
+  dbCall.locationDelete(name)
     .then(count => {
       if(count > 0){
         res.status(200).json({msg: 'location deleted'})

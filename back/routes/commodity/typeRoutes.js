@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching types'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.typeFindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.typeFindById(name)
     .then(type => {
       res.status(200).json(type)
     })
@@ -41,17 +41,17 @@ router.patch('/:name', (req, res) => {
   const { name } = req.params
   const changes = req.body
   dbCall.typeUpdate(name, changes)
-  .then(commodity => {
-    res.status(200).json(commodity)
+  .then(type => {
+    res.status(200).json(type)
   })
   .catch(err => {
     res.status(500).json({mgs: 'error updating type'})
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
-  dbCall.typeDelete(id)
+router.delete('/:name', (req,res) => {
+  const { name } = req.params
+  dbCall.typeDelete(name)
     .then(count => {
       if(count > 0){
         res.status(200).json({msg: 'type deleted'})

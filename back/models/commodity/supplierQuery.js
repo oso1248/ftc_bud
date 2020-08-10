@@ -8,17 +8,18 @@ module.exports = {
   supplierDelete,
 }
 
+
 // create
 async function supplierAdd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_supplier').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return supplierFindById(id)
+  const rtn = await db('mtl_supplier').insert(jsonData, ['company'])
+  const {company} = rtn[0]
+  return supplierFindById(company)
 }
 // read
-function supplierFindById(id) {
+function supplierFindById(company) {
   return db('mtl_supplier')
-  .where({id: id})
+  .where({company: company})
   .first()
 }
 function supplierFindAll() {
@@ -26,18 +27,18 @@ function supplierFindAll() {
     .orderBy('company')
 }
 // update
-function supplierUpdate(id, changes){
+function supplierUpdate(company, changes){
   return db('mtl_supplier')
-    .where({id: id})
+    .where({company: company})
     .update(changes)
     .then(() => {
-    return supplierFindById(id)
+    return supplierFindById(company)
     })
 }
 // delete
-function supplierDelete(id) {
+function supplierDelete(company) {
   return db('mtl_location')
-  .where({id: id})
+  .where({company: company})
   .del()
 }
 

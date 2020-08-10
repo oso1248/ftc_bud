@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching supplier'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.supplierFindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.supplierFindById(name)
     .then(supplier => {
       res.status(200).json(supplier)
     })
@@ -37,10 +37,10 @@ router.get('/:id', (req, res) => {
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.supplierUpdate(id, changes)
+  dbCall.supplierUpdate(name, changes)
   .then(supplier => {
     res.status(200).json(supplier)
   })
@@ -49,8 +49,8 @@ router.patch('/:id', (req, res) => {
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
+router.delete('/:name', (req,res) => {
+  const { name } = req.params
   dbCall.supplierDelete(id)
     .then(count => {
       if(count > 0){

@@ -26,9 +26,9 @@ router.get('/', (req, res) => {
       res.status(500).json({mgs: 'error fetching container'})
     })
 })
-router.get('/:id', (req, res) => {
-  const { id } = req.params
-  dbCall.containerFindById(id)
+router.get('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.containerFindById(name)
     .then(container => {
       res.status(200).json(container)
     })
@@ -37,10 +37,10 @@ router.get('/:id', (req, res) => {
     })
 })
 // update
-router.patch('/:id', (req, res) => {
-  const { id } = req.params
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
   const changes = req.body
-  dbCall.containerUpdate(id, changes)
+  dbCall.containerUpdate(name, changes)
   .then(container => {
     res.status(200).json(container)
   })
@@ -49,9 +49,9 @@ router.patch('/:id', (req, res) => {
   })
 })
 // delete
-router.delete('/:id', (req,res) => {
-  const { id } = req.params
-  dbCall.containerDelete(id)
+router.delete('/:name', (req, res) => {
+  const { name } = req.params
+  dbCall.containerDelete(name)
     .then(count => {
       if(count > 0){
         res.status(200).json({msg: 'container deleted'})

@@ -10,14 +10,14 @@ module.exports = {
 // create
 async function UOMadd(jsonData){
   // return await db.VERSION('mtl_uom').insert((jsonData, ['id', 'uom']))
-  const rtn = await db('mtl_uom').insert(jsonData, ['id'])
-  const {id} = rtn[0]
-  return UOMfindById(id)
+  const rtn = await db('mtl_uom').insert(jsonData, ['uom'])
+  const {uom} = rtn[0]
+  return UOMfindById(uom)
 }
 // read
-function UOMfindById(id) {
+function UOMfindById(uom) {
   return db('mtl_uom')
-  .where({id: id})
+  .where({uom: uom})
   .first()
 }
 function UOMfindAll() {
@@ -25,18 +25,18 @@ function UOMfindAll() {
     .orderBy('uom')
 }
 // update
-function UOMupdate(id, changes){
+function UOMupdate(uom, changes){
   return db('mtl_uom')
-    .where({id: id})
+    .where({uom: uom})
     .update(changes)
     .then(() => {
-    return UOMfindById(id)
+    return UOMfindById(uom)
     })
 }
 // delete
-function UOMdelete(id) {
+function UOMdelete(uom) {
   return db('mtl_uom')
-  .where({id: id})
+  .where({uom: uom})
   .del()
 }
 
