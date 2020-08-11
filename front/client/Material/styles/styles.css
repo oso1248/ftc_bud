@@ -1,0 +1,61 @@
+:root {
+  --primary: #ddd;
+  --dark: #333;
+  --light: #fff;
+  --shadow: 0 1px 5px rgba(104, 104, 104, 0.8)
+}
+
+form {
+  width: 400px;
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+form h2 {
+  text-align: center;
+}
+
+textarea {
+  resize: none;
+}
+
+input, select, textarea, button {
+  font-weight: bold;
+  text-align: center;
+  outline: none;
+  border: 1px solid #ddd;
+  box-shadow: var(--shadow);
+}
+
+input:focus, select:focus, textarea:focus, button:focus {
+  outline: ;
+  border: ;
+  box-shadow: 0 1px 5px rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 700px) {
+  form {
+    width: auto;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 10px;
+  }
+
+  form h2 {
+    text-align: center;
+  }
+
+  input {
+    height: 2rem;
+  }
+
+  select {
+    height: 2rem;
+  }
+
+  button {
+    height: 2rem;
+  }
+}

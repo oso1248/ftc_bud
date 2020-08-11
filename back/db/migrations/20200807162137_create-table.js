@@ -115,7 +115,7 @@ exports.up = function(knex) {
       .unsigned()
       .notNullable()
       .references('id')
-      .inTable('mtl_uom')
+      .inTable('mtl_supplier')
       .onDelete('CASCADE')
       .onUpdate('CASCADE')
   })
