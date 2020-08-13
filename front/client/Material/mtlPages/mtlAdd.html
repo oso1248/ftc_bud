@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://unpkg.com/axios/dist/axios.min.js">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Material</title>
-  <script defer src=""></script>
   <link rel="stylesheet" href="../../styles/styles.css">
   <link rel="stylesheet" href="../styles/styles.css">
 </head>
@@ -31,38 +31,39 @@
       <h2>Commodity</h2><input type="text" name="commodity" placeholder="Commodity Name">
 
       <h2>Supplier</h2>
-      <select name="mtlSupplier" id="mtlSup">
-        
+      <select name="" id="mtlSupplier">
+        <option value="" disabled selected hidden>Select Supplier</option>
       </select>
 
       <h2>Location</h2>
-      <select name="mtlLocation" id="">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+      <select name="" id="mtlLocation">
+        <option value="" disabled selected hidden>Select Location</option>
+
       </select>
 
       <h2>Inventory</h2>
       <select name="mtlInventory" id="">
+        <option value="" disabled selected hidden>Select Inventory</option>
         <option value="raw">Raw</option>
         <option value="supply">Supply</option>
       </select>
 
       <h2>Type</h2>
-      <select name="mtlType" id="">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+      <select name="" id="mtlType">
+        <option value="" disabled selected hidden>Select Type</option>
+
       </select>
 
       <h2>Container</h2>
-      <select name="mtlContainerType" id="">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+      <select name="" id="mtlContainer">
+        <option value="" disabled selected hidden>Select Container</option>
+
       </select>
 
       <h2>Enviromental</h2>
-      <select name="mtlEnviromental" id="">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+      <select name="" id="mtlEnvironmental">
+        <option value="" disabled selected hidden>Select Environmental</option>
+
       </select>
 
       <h2>SAP</h2><input type="text" name="mtlSAP" placeholder="SAP">
@@ -72,13 +73,14 @@
       <h2>Unit Total</h2><input type="text" name="mtlUnitTotal" placeholder="Unit Total">
 
       <h2>UOM</h2>
-      <select name="mtlUOM" id="">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
+      <select name="" id="mtlUOM">
+        <option value="" disabled selected hidden>Select UOM</option>
+
       </select>
 
       <h2>Active:</h2>
       <select name="mtlActive" id="">
+        <option value="" disabled selected hidden>Select Active</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
@@ -88,8 +90,8 @@
       <h2>Note:</h2>
       <textarea name="mtlText" id="" cols="30" rows="5"></textarea>
 
-      <h2>Add:</h2>
-      <button type="submit" name="mtlSubmit" id="mtlSubmit">Submit</button>
+      <h2>Submit:</h2>
+      <button type="submit" name="mtlSubmit" id="mtlSubmit">Add Commodity</button>
     </form>
 
     
@@ -99,5 +101,10 @@
     
   <! -- End of Wrapper -->
   </div>
+
+
+  
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="../scripts/mtlAddLodad.js"></script>
 </body>
 </html>
