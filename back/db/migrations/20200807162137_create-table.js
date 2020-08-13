@@ -55,7 +55,6 @@ exports.up = function(knex) {
     tbl.string('address', 250)
       .notNullable()
     tbl.string('note', 250)
-      .notNullable()
     tbl.timestamps(true, true)
   })
   .createTable('mtl_commodity', tbl => {
