@@ -66,6 +66,8 @@ exports.up = function(knex) {
       .notNullable()
     tbl.string('sap', 50)
       .notNullable()
+    tbl.string('inventory', 25)
+      .notNullable()
     tbl.integer('threshold')
     tbl.integer('per_pallet')
       .notNullable()

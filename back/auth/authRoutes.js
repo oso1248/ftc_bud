@@ -4,11 +4,12 @@ const bcrypt = require('bcryptjs')
 
 const router = express.Router()
 
+
 router.post('/register', (req, res) => {
   const creds = req.body
-  const { username, password, email } = creds
-  if(!username || !password || !email) {
-    return res.status(400).json({msg: 'username, password & email required'})
+  const { username, password, email, permissions } = creds
+  if(!username || !password || !email || !permissions) {
+    return res.status(400).json({msg: 'username, password, email & brewery required'})
   }
   const hash = bcrypt.hashSync(creds.password, 12)
   creds.password = hash
@@ -38,9 +39,9 @@ router.post('/login', (req, res) => {
           id: user.id,
           username: user.username
         }
-        res.status(200).json({msg: `Welcome ${user.username}`})
+        res.status(200).json({msg: 'pass'})  //({msg: `Welcome ${user.username}`})
       } else {
-        res.status(401).json({msg: 'Invalid credentials'})
+        res.status(401).json({msg: 'fail'})
       } 
     })
     .catch(err => {
@@ -49,17 +50,20 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
+  
   if(req.session) {
     req.session.destroy(err => {
       if(err) {
-        res.status(500).json({msg: 'error logging out'})
+        res.status(500).json({msg: 'error'})
       } else {
-        res.status(200).json({msg: 'Successfully logged out'})
+        res.status(200).json({msg: 'success'})
       }
     })
   } else {
     res.status(200).json({msg: 'Not logged out'})
   }
 })
+
+
 
 module.exports = router

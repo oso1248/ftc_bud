@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-const axios = require('axios').default;
-
-window.addEventListener('load', supplier())
-
-function supplier() {
-  // axios.get('http://localhost:5000/api/supplier')
-  console.log('Supplier')
-}
-
-=======
 function createNode(element) {
   return document.createElement(element)
 }
@@ -16,6 +5,7 @@ function append(parent, el) {
   return parent.appendChild(el)
 }
 function createList(api, parent, title) {
+  // fetch(api)
   axios.get(api)
   .then(res => {
     let list = res.data
@@ -31,8 +21,11 @@ function createList(api, parent, title) {
   })
 }
 
+
 window.addEventListener('load', populateLists())
 
+
+// Populate Drop Downs
 function populateLists() {
   supplier()
   locations()
@@ -77,4 +70,27 @@ function uoms(){
   let title = 'uom'
   createList(api, dropDown, title)
 }
->>>>>>> browserify
+
+
+// function addCommodity(event) {
+//   event.preventDefault()
+//   let commodity = {
+//     "commodity": document.getElementById('mtlCommodity').value,
+//     "company": document.getElementById('mtlSupplier').value,
+//     "location": document.getElementById('mtlLocation').value,
+//     "location": document.getElementById('mtlInventory').value,
+//     "type": document.getElementById('mtlType').value,
+//     "container": document.getElementById('mtlContainer').value,
+//     "enviro": document.getElementById('mtlEnvironmental').value,
+//     "sap": document.getElementById('mtlSAP').value,
+//     "per_pallet": document.getElementById('mtlPerPallet').value,
+//     "unit_total": document.getElementById('mtlUnitTotal').value,
+//     "uom": document.getElementById('mtlUOM').value,
+//     "active": document.getElementById('mtlActive').value,
+//     "threshold": document.getElementById('mtlThreshold').value,
+//     "note": document.getElementById('mtlNote').value
+//   }
+//   console.log(commodity)
+// }
+
+// document.getElementById('mtlSubmit').addEventListener('click', addCommodity())

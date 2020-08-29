@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suppliers</title>
+  <link rel="stylesheet" href="../../../styles/styles.css">
+  <link rel="stylesheet" href="../styles/suppliers.css">
+</head>
+
+<body>
+
+  <div class="container1"><!-- start of container1 -->
+    <header>
+      <img class="logo" src="../../../images/ab.png" alt="">
+      <h1>Suppliers</h1>
+       <img class="logo" src="../../../images/ab.png" alt="">
+    </header>
+    <! -- Navigation -->
+    <nav class="main-nav">
+      <ul class="">
+        <li><a href="../../../index.html">Home</a></li>
+        <li><a href="">Brewhouse</a></li>
+        <li><a href="">Finishing</a></li>
+        <li><a href="">Craft</a></li>
+        <li><a href="../material.html">Materials</a></li>
+        <li><a href="" id="logout">Log Out</a></li>
+      </ul>
+    </nav> 
+  </div><!-- end of container1 -->
+
+  <div class="spacer"></div>
+
+  <div class="boxes"><!-- start boxes  -->
+
+    <div class="box" id="add">
+      <a style="display: block">  
+        <!-- <img src="" alt="">   -->
+        <h3>Add Supplier</h3>
+        <p></p>
+      </a>
+    </div>
+
+    <div class="box" id="update">
+      <a style="display: block">  
+        <!-- <img src="" alt="">   -->
+        <h3>Update Supplier</h3>
+        <p></p>
+      </a>
+    </div>
+
+    <div class="box" id="view">
+      <a style="display: block">  
+        <!-- <img src="" alt="">   -->
+        <h3>View Suppliers</h3>
+        <p></p>
+      </a>
+    </div>
+
+    <div class="box">
+      <a style="display: block">  
+        <!-- <img src="" alt="">   -->
+        <h3>Email Supplier</h3>
+        <p></p>
+      </a>
+    </div>
+    
+  </div><!-- end boxes  -->
+
+  <div class="spacer"></div>
+
+  <div class="container2"><!-- start container2 -->
+
+    <form class="form" id="addForm" action="">
+      <h1>Add Supplier</h1>
+      <div class="input">
+        <input type="text"  id="company" Placeholder="Company">
+      </div>
+      <div class="input">
+        <input type="text" id="contact" Placeholder="Contact">
+      </div>
+       <div class="input">
+        <input type="email"  id="email" Placeholder="Email">
+      </div>
+      <div class="input">
+        <input type="text"  id="phone" Placeholder="Phone">
+      </div>
+      <div class="input">
+        <input type="text"  id="address" Placeholder="Address">
+      </div>
+      <div class="input">
+        <textarea name="" id="note" cols="21" rows="5" placeholder="Note"></textarea>
+      </div>
+      <div class="button">
+        <button class="btn" id="addClear">Clear</button>
+        <button class="btn" id="addSubmit">Add</button>
+      </div>
+    </form>
+    
+    <form class="form" id="updateForm" action="">
+      <h1>Update Supplier</h1>
+      <div class="input">
+        <select name="" id="updateCompany">
+          <!-- companies appended here  -->
+        </select>
+      </div>
+      <div class="input">
+         <input type="select"  id="contact" Placeholder="Contact">
+      </div>
+       <div class="input">
+        <input type="email"  id="email" Placeholder="Email">
+      </div>
+      <div class="input">
+        <input type="text"  id="phone" Placeholder="Phone">
+      </div>
+      <div class="input">
+        <input type="text"  id="address" Placeholder="Address">
+      </div>
+      <div class="input">
+        <textarea name="" id="note" cols="21" rows="5" placeholder="Note"></textarea>
+      </div>
+      <div class="button">
+        <button class="btn" id="updateClear">Clear</button>
+        <button class="btn" id="updateSubmit">Update</button>
+      </div>
+    </form>
+
+
+    <div class="viewSuppliers" id="viewSuppliers">
+      <!-- suppliers appended here -->
+    </div>
+
+
+  </div><!-- end container2 -->
+  
+
+<script src="../scripts/suppliers.js"></script>
+<script src="../../../java/app.js"></script>
+</body>
+</html>

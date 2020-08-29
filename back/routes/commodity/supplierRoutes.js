@@ -20,7 +20,13 @@ router.post('/', (req, res) => {
 router.get('/', (req, res) => {
   dbCall.supplierFindAll()
     .then(supplier => {
-      res.status(200).json(supplier)
+      
+      if(supplier == null) {
+        res.status(200).json({company: 'Empty'})
+      } else {
+        res.status(200).json(supplier)
+      }
+      
     })
     .catch(err => {
       res.status(500).json({mgs: 'error fetching supplier'})
@@ -30,7 +36,12 @@ router.get('/:name', (req, res) => {
   const { name } = req.params
   dbCall.supplierFindById(name)
     .then(supplier => {
-      res.status(200).json(supplier)
+      
+      if(supplier == null) {
+        res.status(200).json({company: 'Empty'})
+      } else {
+        res.status(200).json(supplier)
+      }
     })
     .catch(err => {
       res.status(500).json({mgs: 'error fetching supplier'})
@@ -48,6 +59,7 @@ router.patch('/:name', (req, res) => {
     res.status(500).json({mgs: 'error updating supplier'})
   })
 })
+
 // delete
 router.delete('/:name', (req,res) => {
   const { name } = req.params

@@ -19,6 +19,7 @@ const containerRouter = require('../routes/commodity/containerRoutes')
 const supplierRouter = require('../routes/commodity/supplierRoutes')
 const commodityRouter = require('../routes/commodity/commodityRoutes')
 const typeRouter = require('../routes/commodity/typeRoutes')
+const breweryRouter = require('../routes/commodity/breweryRoutes')
 const restricted = require('../auth/restrictedMiddlewear')
 
 
@@ -36,20 +37,25 @@ const sessionConfig = {
 }
 
 
+
 const server = express()
+server.use(cors())
 server.use(express.json())
 server.use(helmet())
 // server.use(morgan('dev')) // remove for production dev dependency
-server.use(cors())
 server.use(session(sessionConfig))
 
-server.use(express.static(path.join(__dirname, '../../front/client')))
+
 // server.get('/', (req, res) => {
-//   res.json({message: 'hello world'})
+//   res.sendFile(path.join(__dirname + '../../index.html'))
 // })
 
 
 server.use('/api/auth', authRouter)
+server.use(express.static(path.join(__dirname, '../../front/login')))
+server.use('/', restricted)
+server.use('/', express.static(path.join(__dirname, '../../front/client')))
+// server.use(express.static(path.join(__dirname, '../../front/client')))
 server.use('/api/user', restricted, userRouter)
 server.use('/api/uom', restricted, uomRouter)
 server.use('/api/enviro', restricted, enviroRouter)
@@ -58,6 +64,7 @@ server.use('/api/container', restricted, containerRouter)
 server.use('/api/supplier', restricted, supplierRouter)
 server.use('/api/commodity', restricted, commodityRouter)
 server.use('/api/type', restricted, typeRouter)
+server.use('/api/brewery', restricted, breweryRouter)
 
 
 module.exports = server

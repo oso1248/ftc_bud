@@ -1,0 +1,1 @@
+https://localhost:5000/api/supplier?company=Budweiser&contact=Adam+Coulson&email=oso1248%40gmail.com&phone=970-490-4500&address=1223+Otto+Rd&note=This+is+a+test+note.

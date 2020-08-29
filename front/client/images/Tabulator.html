@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html itemscope="" itemtype="http://schema.org/WebSite" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Tabulator</title>
+  <meta name="description" content="Create interactive data tables in seconds with Tabulator. A lightweight, fully featured JavaScript table generation library.">
+  <meta name="author" content="Oli Folkerd">
+
+  <!-- Schema.org markup for Google+ -->
+  <meta itemprop="name" content="Tabulator - Interactive JavaScript Tables">
+  <meta itemprop="description" content="Create interactive data tables in seconds with Tabulator. A lightweight, fully featured JavaScript table generation library.">
+  <meta itemprop="image" content="http://tabulator.info/images/tabulator_share.png">
+
+  <!-- Twitter Card data -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@OliFolkerd">
+  <meta name="twitter:creator" content="@OliFolkerd">
+  <meta name="twitter:title" content="Tabulator - Interactive JavaScript Tables">
+  <meta name="twitter:description" content="Create interactive data tables in seconds with Tabulator. A lightweight, fully featured JavaScript table generation library.">
+  <meta name="twitter:image" content="http://tabulator.info/images/tabulator_share.png">
+
+
+  <meta property="og:title" content="Tabulator - Interactive JavaScript Tables">
+  <meta property="og:description" content="Create interactive data tables in seconds with Tabulator. A lightweight, fully featured JavaScript table generation library.">
+  <meta property="og:image" content="http://tabulator.info/images/tabulator_share.png">
+  <meta property="og:image:secure_url" content="http://tabulator.info/images/tabulator_share.png">
+
+
+  
+  <!-- jQuery -->
+  <script async="" src="Tabulator_files/analytics.js"></script><script src="Tabulator_files/jquery-3.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="Tabulator_files/jquery-ui.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+  <script src="Tabulator_files/polyfill.js"></script>
+  <script src="Tabulator_files/fetch.js"></script>
+
+
+
+  <link href="Tabulator_files/tabulator_site.css" rel="stylesheet">
+<script type="text/javascript" src="Tabulator_files/tabulator.js"></script>
+
+<script src="Tabulator_files/moment.js"></script>
+<script type="text/javascript" src="Tabulator_files/xlsx.js"></script>
+<script src="Tabulator_files/jspdf_002.js"></script>
+<script src="Tabulator_files/jspdf.js"></script>
+
+<script type="text/javascript">
+	window.TableLoader = {
+		tables:{},
+		register:function(table, func){
+			this.tables[table] = func;
+		},
+		trigger:function(){
+			for(var key in this.tables){
+				this.tables[key]();
+			}
+		},
+	}
+
+	var tabledata = [
+	{id:1, name:"Oli Bob", progress:12, location:"United Kingdom", gender:"male", rating:1, col:"red", dob:"14/04/1984", car:1, lucky_no:5, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:2, name:"Mary May", progress:1, location:"Germany", gender:"female", rating:2, col:"blue", dob:"14/05/1982", car:true, lucky_no:10, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:3, name:"Christine Lobowski", progress:42, location:"France", gender:"female", rating:0, col:"green", dob:"22/05/1982", car:"true", lucky_no:12, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:4, name:"Brendon Philips", progress:100, location:"USA", gender:"male", rating:1, col:"orange", dob:"01/08/1980", lucky_no:18, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:5, name:"Margret Marmajuke", progress:16, location:"Canada", gender:"female", rating:5, col:"yellow", dob:"31/01/1999", lucky_no:33, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:6, name:"Frank Harbours", progress:38, location:"Russia", gender:"male", rating:4, col:"red", dob:"12/05/1966", car:1, lucky_no:2, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:7, name:"Jamie Newhart", progress:23, location:"India", gender:"male", rating:3, col:"green", dob:"14/05/1985", car:true, lucky_no:63, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:8, name:"Gemma Jane", progress:60, location:"China", gender:"female", rating:0, col:"red", dob:"22/05/1982", car:"true", lucky_no:72, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:9, name:"Emily Sykes", progress:42, location:"South Korea", gender:"female", rating:1, col:"maroon", dob:"11/11/1970", lucky_no:44, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	{id:10, name:"James Newman", progress:73, location:"Japan", gender:"male", rating:5, col:"red", dob:"22/03/1998", lucky_no:9, lorem:"Lorem ipsum dolor sit amet, elit consectetur adipisicing "},
+	];
+
+	var tableDataNested = [
+	{id:1, name:"Oli Bob", progress:12, location:"United Kingdom", gender:"male", rating:1, col:"red", dob:"14/04/1984", car:1, lucky_no:5, _children:[
+	{id:2, name:"Mary May", progress:1, location:"Germany", gender:"female", rating:2, col:"blue", dob:"14/05/1982", car:true, lucky_no:10},
+	{id:3, name:"Christine Lobowski", progress:42, location:"France", gender:"female", rating:0, col:"green", dob:"22/05/1982", car:"true", lucky_no:12},
+	{id:4, name:"Brendon Philips", progress:100, location:"USA", gender:"male", rating:1, col:"orange", dob:"01/08/1980", lucky_no:18, _children:[
+	{id:5, name:"Margret Marmajuke", progress:16, location:"Canada", gender:"female", rating:5, col:"yellow", dob:"31/01/1999", lucky_no:33},
+	{id:6, name:"Frank Harbours", progress:38, location:"Russia", gender:"male", rating:4, col:"red", dob:"12/05/1966", car:1, lucky_no:2},
+	]},
+	]},
+	{id:7, name:"Jamie Newhart", progress:23, location:"India", gender:"male", rating:3, col:"green", dob:"14/05/1985", car:true, lucky_no:63},
+	{id:8, name:"Gemma Jane", progress:60, location:"China", gender:"female", rating:0, col:"red", dob:"22/05/1982", car:"true", lucky_no:72, _children:[
+	{id:9, name:"Emily Sykes", progress:42, location:"South Korea", gender:"female", rating:1, col:"maroon", dob:"11/11/1970", lucky_no:44},
+	]},
+	{id:10, name:"James Newman", progress:73, location:"Japan", gender:"male", rating:5, col:"red", dob:"22/03/1998", lucky_no:9},
+	];
+
+	var tabledatabig = [
+	{id:1, name:"Oli Bob", progress:12, gender:"male", rating:1, col:"red", dob:"14/04/1984", car:1, lucky_no:5},
+	{id:2, name:"Mary May", progress:1, gender:"female", rating:2, col:"blue", dob:"14/05/1982", car:true, lucky_no:10},
+	{id:3, name:"Christine Lobowski", progress:42, gender:"female", rating:0, col:"green", dob:"22/05/1982", car:"true", lucky_no:12},
+	{id:4, name:"Brendon Philips", progress:100, gender:"male", rating:1, col:"orange", dob:"01/08/1980", lucky_no:18},
+	{id:5, name:"Margret Marmajuke", progress:16, gender:"female", rating:5, col:"yellow", dob:"31/01/1999", lucky_no:33},
+	{id:6, name:"Frank Harbours", progress:38, gender:"male", rating:4, col:"red", dob:"12/05/1966", car:1, lucky_no:2},
+	{id:7, name:"Jamie Newhart", progress:23, gender:"male", rating:3, col:"green", dob:"14/05/1985", car:true, lucky_no:63},
+	{id:8, name:"Gemma Jane", progress:60, gender:"female", rating:0, col:"red", dob:"22/05/1982", car:"true", lucky_no:72},
+	{id:9, name:"Emily Sykes", progress:42, gender:"female", rating:1, col:"maroon", dob:"11/11/1970", lucky_no:44},
+	{id:10, name:"James Newman", progress:73, gender:"male", rating:5, col:"red", dob:"22/03/1998", lucky_no:9},
+	{id:11, name:"Martin Barryman", progress:20, gender:"male", rating:5, col:"violet", dob:"04/04/2001"},
+	{id:12, name:"Jenny Green", progress:56, gender:"female", rating:4, col:"indigo", dob:"12/11/1998", car:true},
+	{id:13, name:"Alan Francis", progress:90, gender:"male", rating:3, col:"blue", dob:"07/08/1972", car:true},
+	{id:14, name:"John Phillips", progress:80, gender:"male", rating:1, col:"green", dob:"24/09/1950", car:true},
+	{id:15, name:"Ed White", progress:70, gender:"male", rating:0, col:"yellow", dob:"19/06/1976"},
+	{id:16, name:"Paul Branderson", progress:60, gender:"male", rating:5, col:"orange", dob:"01/01/1982"},
+	{id:17, name:"Gemma Jane", progress:50, gender:"female", rating:2, col:"red", dob:"14/04/1983", car:true},
+	{id:18, name:"Emma Netwon", progress:40, gender:"female", rating:4, col:"brown", dob:"07/10/1963", car:true},
+	{id:19, name:"Hannah Farnsworth", progress:30, gender:"female", rating:1, col:"pink", dob:"11/02/1991"},
+	{id:20, name:"Victoria Bath", progress:20, gender:"female", rating:2, col:"purple", dob:"22/03/1986"},
+	];
+</script>
+
+
+  <link href="Tabulator_files/css.css" rel="stylesheet" type="text/css">
+
+<!-- <link rel="stylesheet" href="/css/fontawesome.min.css"> -->
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="Tabulator_files/bootstrap.css">
+
+
+
+
+  <link href="Tabulator_files/app.css" rel="stylesheet">
+<!--   <link href="css/home.css" rel="stylesheet">
+  <link href="css/prettyprint.css" rel="stylesheet"> -->
+
+  <link rel="icon" type="image/png" href="http://tabulator.info/images/tabulator_favicon_simple.png">
+  <link rel="stylesheet" href="Tabulator_files/docsearch.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" /> -->
+<link rel="stylesheet" type="text/css" href="Tabulator_files/prettify.css"></head>
+
+<body data-page="docs">
+
+  <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="http://tabulator.info/"><img src="Tabulator_files/tabulator_small.png" alt="Tabulator"></a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a class=" " href="http://tabulator.info/">Home</a>
+          </li>
+          <li>
+            <a class=" active" href="http://tabulator.info/docs/4.7">Documentation</a>
+          </li>
+          <li>
+            <a class="" href="http://tabulator.info/faq/">FAQ</a>
+          </li>
+          <li>
+            <a class=" " href="http://tabulator.info/examples/4.7">Examples</a>
+          </li>
+          <li>
+            <a class="hidden-sm " href="http://tabulator.info/news/">News</a>
+          </li>
+          <li>
+            <a class="hidden-sm " href="http://tabulator.info/community/">Community</a>
+          </li>
+          <li>
+            <a id="github-link" href="https://github.com/olifolkerd/tabulator">Github</a>
+          </li>
+        </ul>
+
+        <span class="search-bar hidden-sm hidden-xs">
+          <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input type="search" style="position: absolute; top: 0px; left: 0px; border-color: transparent; box-shadow: none; opacity: 1; background: rgb(240, 240, 240) none repeat scroll 0% 0%;" class="ds-hint" readonly="readonly" aria-hidden="true" autocomplete="off" spellcheck="false" tabindex="-1"><input id="sidebar-search-input" type="search" placeholder="Search Docs" class="ds-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" style="position: relative; vertical-align: top; background-color: transparent;" dir="auto"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: &quot;Open Sans&quot;, sans-serif; font-size: 16px; font-style: normal; font-variant: normal; font-weight: 100; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: optimizelegibility; text-transform: none;"></pre><span class="ds-dropdown-menu" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;" role="listbox" id="algolia-autocomplete-listbox-0"><div class="ds-dataset-1"></div></span></span>
+          <i class="fa fa-search"></i>
+        </span>
+      </div>
+    </div>
+
+  </nav>
+
+  
+  <main class="container" data-page="docs">
+    
+<div class="row">
+
+	<div class="col-md-3" role="complementary">
+		<nav class="docs-sidebar docs-sidebar-detailed hidden-print hidden-xs hidden-sm affix">
+
+			<div class="docs-sidenav-detailed">
+				<div id="version-select-detailed">
+  <div class="btn-group">
+    <button type="button" class="btn btn-sm  btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Version 4.7 <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu  w-100">
+
+      
+            <li class=""><a href="http://tabulator.info/docs/4.7">4.7</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.6">4.6</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.5">4.5</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.4">4.4</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.3">4.3</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.2">4.2</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.1">4.1</a></li>
+            <li class=""><a href="http://tabulator.info/docs/4.0">4.0</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.5">3.5</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.4">3.4</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.3">3.3</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.2">3.2</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.1">3.1</a></li>
+            <li class=""><a href="http://tabulator.info/docs/3.0">3.0</a></li>
+            <li class=""><a href="http://tabulator.info/docs/2.12">2.12</a></li>
+      
+
+    </ul>
+  </div>
+</div>				<!-- <div class="search-bar">
+	<input id="sidebar-search-input" type="search" placeholder="Search Docs">
+	<i class="fa fa-search"></i>
+</div> -->
+
+				<div class="docs-sidenav-detailed-list">
+					<ul>
+        <li class="">
+        <h2>Version Info<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/release">Release Notes</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/upgrade">Upgrade Guide</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/jquery">jQuery Support</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/browsers">Browser Support</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/deprecated">Deprecated Functionality</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/frameworks">Framework Support</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/language">Languages</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/license">License</a></li>
+                    </ul>
+    </li>
+        <li class="">
+        <h2>Getting Started<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/quickstart">Quickstart</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/install">Installation</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/columns">Column Setup</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/data">Loading Data</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/options">Setup Options</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/callbacks">Callbacks</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/reactivity">Reactivity</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/jquery">jQuery Wrapper</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/build">Custom Build</a></li>
+                    </ul>
+    </li>
+        <li class="open">
+        <h2>Layout<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class="active"><a href="http://tabulator.info/docs/4.7/layout">Table Layout</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/format">Formatting</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/page">Pagination</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/group">Grouping</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/tree">Tree Structure</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/theme">Themes</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/style">Styling</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/localize">Localization</a></li>
+                    </ul>
+    </li>
+        <li class="">
+        <h2>Data Manipulation<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/update">Updating Data</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/mutators">Mutators</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/edit">Editing</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/validate">Validation</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/sort">Sort</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/filter">Filters</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/column-calcs">Column Calculations</a></li>
+                    </ul>
+    </li>
+        <li class="">
+        <h2>Interaction<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/navigation">Navigation</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/keybindings">Keybindings</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/move">Movable Rows and Columns</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/select">Row Selection</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/menu">Menus</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/history">Interaction History</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/persist">Persistent Config</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/clipboard">Clipboard</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/download">Download</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/print">Printing</a></li>
+                    </ul>
+    </li>
+        <li class="">
+        <h2>Architecture Concepts<i class="fa closed fa-chevron-right"></i><i class="fa open fa-chevron-down"></i></h2>
+        <ul>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/virtual-dom">Virtual DOM</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/lifecycle">Lifecycle</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/components">Component Objects</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/modules">Modules</a></li>
+                        <li class=""><a href="http://tabulator.info/docs/4.7/accessibility">Accessibility</a></li>
+                    </ul>
+    </li>
+    </ul>				</div>
+
+				<div class="share">
+	<a data-type="facebook" href="https://www.facebook.com/sharer/sharer.php?u=http%3A//olifolkerd.github.io/tabulator/" onclick="window.open(this.href, 'share','left=20,top=20,width=500,height=400,toolbar=1,resizable=0'); return false;" title="Share On Facebook"><i class="fab fa-fw fa-facebook-square"></i></a>
+	<a data-type="twitter" href="https://twitter.com/home?status=http%3A//olifolkerd.github.io/tabulator/" onclick="window.open(this.href, 'share','left=20,top=20,width=500,height=260,toolbar=1,resizable=0'); return false;" title="Share On Twitter"><i class="fab fa-fw fa-twitter"></i></a>
+<!-- 	<a data-type="google" href="https://plus.google.com/share?url=http%3A//olifolkerd.github.io/tabulator/" onclick="window.open(this.href, 'share','left=20,top=20,width=500,height=510,toolbar=1,resizable=0'); return false;"  title="Share On Google+"><i class="fab fa-fw fa-google-plus-g"></i></a> -->
+	<a data-type="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=http%3A//olifolkerd.github.io/tabulator/&amp;title=Tabulator%20-%20Interactive%20JavaScript%20Tables&amp;summary=Create%20interactive%20data%20tables%20in%20seconds%20with%20Tabulator.%20A%20lightweight,%20fully%20featured%20JQuery%20table%20generation%20plugin&amp;source=" onclick="window.open(this.href, 'share','left=20,top=20,width=500,height=510,toolbar=1,resizable=0'); return false;" title="Share On LinkedIn"><i class="fab fa-fw fa-linkedin"></i></a>
+</div>				<a class="support-patreon" href="http://tabulator.info/support" target="_blank">
+	<button type="button">
+		<span><i class="fas fa-donate"></i> Support Tabulator <i class="fas fa-donate"></i></span>
+	</button>
+</a>			</div>
+
+
+		</nav>
+	</div>
+
+	<div class="col-md-9 col-xs-12 content" role="main">
+		
+		
+<h1>Table Layout</h1>
+
+<ul class="page-links">
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#table-height">Table Height</a>
+        <ul>
+            <li><a href="#height-fixed">Fixed Height Tables</a></li>
+            <li><a href="#height-variable">Variable Height Tables</a></li>
+            <li><a href="#height-advanced">Advanced Options</a></li>
+        </ul>
+    </li>
+    <li><a href="#col-layout">Column Layout Modes</a>
+        <ul>
+            <li><a href="#fittodata">Fit Columns To Data</a></li>
+            <li><a href="#fittodatafill">Fit Columns To Data and Fill Empty Space</a></li>
+            <li><a href="#fittodatastretch">Fit Columns To Data and Stretch Last Column</a></li>
+            <li><a href="#fittodatatable">Fit Table and Columns to Data</a></li>
+            <li><a href="#fittowidth">Fit Columns to Table</a></li>
+        </ul>
+    </li>
+    <li><a href="#responsive">Responsive Column Layout</a>
+        <ul>
+            <li><a href="#responsive-hide">Hide Columns</a></li>
+            <li><a href="#responsive-collapse">Collapse Columns</a></li>
+        </ul>
+    </li>
+    <li><a href="#resize">Resizable Elements</a>
+        <ul>
+            <li><a href="#resize-table">Table Resizing</a></li>
+            <li><a href="#resize-row">Resizable Rows</a></li>
+            <li><a href="#resize-column">Resizable Columns</a></li>
+        </ul>
+    </li>
+    <li><a href="#frozen">Frozen Elements</a>
+        <ul>
+            <li><a href="#frozen-column">Frozen Columns</a></li>
+            <li><a href="#frozen-row">Frozen Rows</a></li>
+        </ul>
+    </li>
+    <li><a href="#redraw">Redrawing the table</a></li>
+    <li><a href="#virtual-dom">The Virtual DOM</a></li>
+    <li><a href="#placeholder">Empty Table Placeholder</a></li>
+    <li><a href="#footer">Table Footer Element</a></li>
+    <li><a href="#callbacks">Callbacks</a></li>
+</ul>
+
+<a class="anchor" id="overview"></a>
+<h2>Overview</h2>
+<p>Tabulator has loads of different ways of customizing the layout the 
+table, have a look through the next few sections to see how you can 
+configure your tables to meet your use case. </p>
+
+<a class="anchor" id="table-height"></a>
+<h2>Table Height</h2>
+
+<a class="anchor" id="height-fixed"></a>
+<h3>Fixed Height Tables</h3>
+
+<p>Tabulator works most efficiently when the table has a fixed height, either defined in the CSS for the element or set using the <span class="param">height</span> option in the table constructor, this can be set to any valid CSS value</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    height</span><span class="pun">:</span><span class="str">"100%"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>By setting the height on the table, you allow Tabulator's <a href="#virtual-dom">virtual DOM</a> to optimize the tables memory and processor usage. It does this by only rendering the rows you see in the table <i>(plus a few above and below the current view)</i> and creates and destroys the rows as you scroll through the table.</p>
+
+<p>This allows tabulator to handle thousands of rows with no overhead as it only processes the information it needs to display.</p>
+
+<p>If a height is set on the table then it will display vertical scroll 
+bars when the number of row exceeds the table height. If there are less 
+rows than the height of the table then the background of the table will 
+be visible.</p>
+
+<a class="anchor" id="height-variable"></a>
+<h3>Variable Height Tables</h3>
+
+<p>If you would rather that your table takes up as much space as is 
+needed to show all the available rows, then simply don't specify a 
+height on your table element or in your table constructor.</p>
+
+<p>Without a height the table will keep expanding to fit the number of available rows and will never display a vertical scroll bar.</p>
+
+<p class="note"><strong>Slow Rendering:</strong> It is worth noting that
+ if you are loading a lot of rows into your table without a height set 
+then it may result is blocking of the browser and slow render speeds as 
+it takes a lot of memory to draw 100's of rows onto the screen.</p>
+
+<h4>Maximum Table Height</h4>
+
+<p>With a variable table height you can set the maximum height of the table either defined in the <span class="param">max-height</span> CSS property for the element or set it using the <span class="param">maxHeight</span> option in the table constructor, this can be set to any valid CSS value</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    maxHeight</span><span class="pun">:</span><span class="str">"100%"</span><span class="pun">,</span><span class="pln"> </span><span class="com">//do not let table get bigger than the height of its parent element</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>By setting this you can allow your table to expand to fit the data, 
+but not overflow its parent element. Whene there are too many rows to 
+fit in the available space, the vertical scroll bar will be shown. This 
+has the added benefit of improving load times on larger tables</p>
+
+<h4>Minimum Table Height</h4>
+
+<p>With a variable table height you can set the minimum height of the table either defined in the <span class="param">min-height</span> CSS property for the element or set it using the <span class="param">minHeight</span> option in the table constructor, this can be set to any valid CSS value</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    minHeight</span><span class="pun">:</span><span class="lit">300</span><span class="pun">,</span><span class="pln"> </span><span class="com">//do not let table get smaller than 300 px heigh</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="height-advanced"></a>
+<h3>Advanced Options</h3>
+
+<p>There are many scenarios in which you many need to tweak the way the 
+virual DOM works or disable it all togeather. For example tables with 
+significantly varying row height, or very large data sets.</p>
+
+<p>In these cases, have a read of the <a href="#virtual-dom">Virtual DOM Documentation</a> to find out more.</p>
+
+
+<a class="anchor" id="layout"></a>
+<h2>Column Layout Modes</h2>
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Layout mode functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-layout">layout module</a>
+</div>
+
+<p>You can choose how your table should layout its columns by setting the <span class="param">layout</span> mode, in the configuration options:</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitData"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>Tabulator has a number of different layout modes to choose from</p>
+
+
+<a class="anchor" id="fittodata"></a>
+<h3>Fit Columns to Data  <a class="example-link" href="http://tabulator.info/examples/4.7?#fittodata"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+<p>By default Tabulator will use the <span class="param">fitData</span> layout mode, which will resize the tables columns to fit the data held in each column, unless you specify a <span class="param">width</span> or <span class="param">minWidth</span> in the column constructor. If the width of all columns exceeds the width of the containing element, a scroll bar will appear.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitData"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="fittodatafill"></a>
+<h3>Fit Columns to Data and Fill  <a class="example-link" href="http://tabulator.info/examples/4.7?#fittodatafill"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+
+<p>The <span class="param">fitDataFill</span> layout mode functions in the same way as the <span class="param">fitData</span> mode, but ensures that rows are always at least the full width of the table.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitDataFill"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="fittodatastretch"></a>
+<h3>Fit Columns to Data and Stretch Last Column <a class="example-link" href="http://tabulator.info/examples/4.7?#fittodatastretch"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+
+<p>The <span class="param">fitDataStretch</span> layout mode functions in the same way as the <span class="param">fitDataFill</span> mode, but instead of stretching the empty row to fill the table it stretches the last visible column.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitDataStretch"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+
+<a class="anchor" id="fittodatatable"></a>
+<h3>Fit Table and Columns to Data  <a class="example-link" href="http://tabulator.info/examples/4.7?#fittodatatable"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+<p>The <span class="param">fitDataTable</span> layout mode, will set the column withs in the same way as the <span class="param">fitData</span> mode, but it will also then resize the width of the table to match the total width of the columns</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitDataTable"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+
+<a class="anchor" id="fittowidth"></a>
+<h3>Fit Columns to Table Width <a class="example-link" href="http://tabulator.info/examples/4.7?#fittowidth"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+<p>As an alternative to the default data fit, you can use the <span class="param">fitColumns</span> layout mode to cause Tabulator to resize columns so they fit perfectly in the available table width.</p>
+
+<p>In this layout mode, columns without a <span class="param">width</span> set are resized to fill any remaining space on the table. If all columns cannot fit on the table then a scrollbar will appear.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitColumns"</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>You can adjust the behaviour of the layout using the <span class="param">widthGrow</span> and <span class="param">widthShrink</span> properties on a column definition</p>
+
+<p>The <span class="param">widthGrow</span> property should be used on columns without a <span class="param">width</span>
+ property set. The value is used to work out what fraction of the 
+available will be allocated to the column. The value should be set to a 
+number greater than 0, by default any columns with no <span class="param">width</span> set have a <span class="param">widthGrow</span> value of 1.</p>
+
+<p>The <span class="param">widthGrow</span> function works by dividing the available space by the sum total of <span class="param">widthGrow</span> values and then allocating it out to the columns based on their value.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitColumns"</span><span class="pun">,</span><span class="pln">
+    columns</span><span class="pun">:[</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column has a fixed width of 100px;</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"age"</span><span class="pun">,</span><span class="pln"> widthGrow</span><span class="pun">:</span><span class="lit">1</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column will be allocated 1/5 of the remaining space</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Color"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"color"</span><span class="pun">,</span><span class="pln"> widthGrow</span><span class="pun">:</span><span class="lit">3</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column will be allocated 3/5 of the remaining space</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"location"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"location"</span><span class="pun">},</span><span class="pln"> </span><span class="com">// column has a default widthGrow of 1 and will be allocated 1/5 of the remaining space</span><span class="pln">
+    </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>The <span class="param">widthShrink</span> property should be used on columns with a <span class="param">width</span>
+ property set. The value is used to work out how to shrink columns with a
+ fixed width when the table is too narrow to fit in all the columns. The
+ value should be set to a number greater than 0, by default columns with
+ a <span class="param">width</span> set have a <span class="param">widthShrink</span> value of 0, meaning they will not be shrunk if the table gets too narrow, and may cause the horizontal scrollbar to appear.</p>
+
+<p>The <span class="param">widthShrink</span> function works by dividing the excess horizontal space by the sum total of <span class="param">widthShrink</span> values and then allocating it out to the columns based on their value.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layout</span><span class="pun">:</span><span class="str">"fitColumns"</span><span class="pun">,</span><span class="pln">
+    columns</span><span class="pun">:[</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">100</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column will not be shrunk</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"age"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> widthShrink</span><span class="pun">:</span><span class="lit">2</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column will be shrunk by 2/3 of the excess space</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Color"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"color"</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">:</span><span class="lit">200</span><span class="pun">,</span><span class="pln"> widthShrink</span><span class="pun">:</span><span class="lit">1</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column will be shrunk by 1/3 of the excess space</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"location"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"location"</span><span class="pun">},</span><span class="pln"> </span><span class="com">//column has no width set so will be set at the tables minWidth value</span><span class="pln">
+    </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+
+<a class="anchor" id="layoutcolumnsonnewdata"></a>
+<h4>Update Column Widths On New Data </h4>
+<p>To keep the layout of the columns consistent, once the column widths have been set on the first data load <i>(either from the <span class="param">data</span> property in the constructor or the <span class="param">setData</span> function)</i> they will not be changed when new data is loaded.</p>
+
+<p>If you would prefer that the column widths adjust to the data each time you load it into the table you can set the <span class="param">layoutColumnsOnNewData</span> property to <span class="param">true</span>.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    layoutColumnsOnNewData</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="responsive"></a>
+<h2>Responsive Layout <a class="example-link" href="http://tabulator.info/examples/4.7?#responsive-layout"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h2>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Responsive layout functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-responsiveLayout">responsive layout module</a>
+</div>
+
+<p>Responsive layout will automatically hide/show columns to fit the 
+width of the Tabulator element. This allows for clean rendering of 
+tables on smaller mobile devices, showing important data while avoiding 
+horizontal scroll bars. You can enable responsive layouts using the <span class="param">responsiveLayout</span> option.</p>
+
+<p>There are two responsive layout modes available:</p>
+<ul>
+    <li><strong>hide</strong> - hide columns that no longer fit in the table</li>
+    <li><strong>collapse</strong> - collapse columns that no longer fit on the table into a list under the row</li>
+</ul>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayout</span><span class="pun">:</span><span class="str">"hide"</span><span class="pun">,</span><span class="pln"> </span><span class="com">// hide rows that no longer fit</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="responsive-hide"></a>
+<h3>Hide Extra Columns</h3>
+<p>By default, columns will be hidden from right to left as the width of
+ the table decreases. You can choose exactlyhow columns are hidden using
+ the <span class="param">responsive</span> property in the column definition object.</p>
+
+<p>When responsive layout is enabled, all columns are given a default <span class="param">responsive</span>
+ value of 1. The higher you set this value the sooner that column will 
+be hidden as the table width decreases. If two columns have the same 
+responsive value then they are hidden from right to left (as defined in 
+the column definition array, ignoring user moving of the columns). If 
+you set the value to 0 then the column will never be hidden regardless 
+of how narrow the table gets.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayout</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> </span><span class="com">// enable responsive layouts</span><span class="pln">
+    columns</span><span class="pun">:[</span><span class="pln"> </span><span class="com">//set column definitions for imported table data</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> responsive</span><span class="pun">:</span><span class="lit">0</span><span class="pun">},</span><span class="pln"> </span><span class="com">// this column wil never be hidden</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"age"</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> responsive</span><span class="pun">:</span><span class="lit">3</span><span class="pun">},</span><span class="pln"> </span><span class="com">// hidden first</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Gender"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"gender"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="com">// hidden fifth</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Height"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"height"</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> responsive</span><span class="pun">:</span><span class="lit">2</span><span class="pun">},</span><span class="pln"> </span><span class="com">// hidden third</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Favourite Color"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"color"</span><span class="pln"> </span><span class="pun">,</span><span class="pln"> responsive</span><span class="pun">:</span><span class="lit">2</span><span class="pun">},</span><span class="pln"> </span><span class="com">// hidden second</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Date of Birth"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"dob"</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="com">// hidden fourth</span><span class="pln">
+    </span><span class="pun">],</span><span class="pln">
+</span><span class="pun">});</span></pre>
+<p class="note"><strong>Note:</strong> If you are using the <span class="param">fitColumns</span> feature, you will need to set a <span class="param">minWidth</span>
+ property on the columns you want to respond responsively to ensure they
+ are hidden when necessary, otherwise Tabulator will keep on reducing 
+the width of the columns instead.</p>
+
+<a class="anchor" id="responsive-collapse"></a>
+<h3>Collapsed Extra Columns To List <a class="example-link" href="http://tabulator.info/examples/4.7?#responsive-layout-collapse"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+<p>If you set the <span class="param">responsiveLayout</span> option to <span class="param">collapse</span> the values from hidden columns will be displayed in a title/value list under the row.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayout</span><span class="pun">:</span><span class="str">"collapse"</span><span class="pun">,</span><span class="pln"> </span><span class="com">// collapse columns that no longer fit on the table into a list under the row</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>In this mode an object containing the title of each hidden column and
+ its value is generated and then used to generate a list displayed in a 
+div <span class="param">.tabulator-responsive-collapse</span> under the row data.</p>
+
+<p>The inbuilt collapse formatter creates a table to neatly display the 
+hidden columns. If you would like to format the data in your own way you
+ can use the <span class="param">responsiveLayoutCollapseFormatter</span>, it takes an array of objects of the column titles and values as an argument and must return the HTML content of the div.</p>
+
+<p>This function should return an empty string if there is no data to display.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayoutCollapseFormatter</span><span class="pun">:</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">data</span><span class="pun">){</span><span class="pln">
+        </span><span class="com">//data - an array of objects containing the column title and value for each cell</span><span class="pln">
+        </span><span class="kwd">var</span><span class="pln"> list </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"ul"</span><span class="pun">);</span><span class="pln">
+
+        data</span><span class="pun">.</span><span class="pln">forEach</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">col</span><span class="pun">){</span><span class="pln">
+            </span><span class="kwd">let</span><span class="pln"> item </span><span class="pun">=</span><span class="pln"> document</span><span class="pun">.</span><span class="pln">createElement</span><span class="pun">(</span><span class="str">"li"</span><span class="pun">);</span><span class="pln">
+            item</span><span class="pun">.</span><span class="pln">innerHTML </span><span class="pun">=</span><span class="pln"> </span><span class="str">"&lt;strong&gt;"</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> col</span><span class="pun">.</span><span class="pln">title </span><span class="pun">+</span><span class="pln"> </span><span class="str">"&lt;/strong&gt; - "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> col</span><span class="pun">.</span><span class="pln">value</span><span class="pun">;</span><span class="pln">
+            list</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln">item</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">});</span><span class="pln">
+
+        </span><span class="kwd">return</span><span class="pln"> </span><span class="typ">Object</span><span class="pun">.</span><span class="pln">keys</span><span class="pun">(</span><span class="pln">data</span><span class="pun">).</span><span class="pln">length </span><span class="pun">?</span><span class="pln"> list </span><span class="pun">:</span><span class="pln"> </span><span class="str">""</span><span class="pun">;</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>The data argument is an array of objects of the column titles and values, it takes the following format:</p>
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pun">[</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln">
+        value</span><span class="pun">:</span><span class="str">"Steve Green"</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">},</span><span class="pln">
+    </span><span class="pun">{</span><span class="pln">
+        title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln">
+        value</span><span class="pun">:</span><span class="lit">53</span><span class="pun">,</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">]</span></pre>
+
+<h4>Collapsed List Column Formatting</h4>
+<p>By default any formatter set on the column is applied to the value 
+that will appear in the list. while this works for most formatters it 
+can cause issues with the <span class="param">progress</span> formatter which relies on being inside a cell.</p>
+
+<p>If you would like to disable column formatting in the collapsed list, you can use the <span class="param">responsiveLayoutCollapseUseFormatters</span> option:</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayoutCollapseUseFormatters</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Dummy Cell Component</strong><br>
+    Because the collapsed data is not based in a cell, a dummy cell 
+component is passed into the formatters to allow them to fucntion as 
+normal. This dummy component only has the <span class="param">getValue</span>, <span class="param">getData</span>, <span class="param">getElement</span>, <span class="param">getRow</span>  and <span class="param">getColumn</span> functions rather than the full set of component functions.
+</p>
+
+<h4>Collapsed List Show/Hide</h4>
+<p>If you would like your users to be able to interact with the list and
+ hide/show it as needed you can add a column that uses the built-in <span class="param">responsiveCollapse</span> formatter that provides a control for toggling the visibility of the collapsed list</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pun">{</span><span class="pln">formatter</span><span class="pun">:</span><span class="str">"responsiveCollapse"</span><span class="pun">,</span><span class="pln"> headerSort</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">}</span></pre>
+
+<p>The column using this formatter will be automatically hidden when there are no collapsed columns to display.</p>
+
+
+<h4>Default List Visibility</h4>
+<p>Collapsed lists are displayed to the user by default, if you would 
+prefer they start closed so the user can open them you can use the <span class="param">responsiveLayoutCollapseStartOpen</span> option</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    responsiveLayoutCollapseStartOpen</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="resize"></a>
+<h2>Resizable Elements </h2>
+
+<a class="anchor" id="resize-table"></a>
+<h3>Table Resizing </h3>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Table resize functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-resizeTable">resize table module</a>
+</div>
+
+<p>Tabulator will automatically attempt to redraw the data contained in 
+the table if the containing element for the table is resized. To disable
+ this functionality, set the <span class="param">autoResize</span> property to <span class="param">false</span></p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    autoResize</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="com">// prevent auto resizing of table</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Note:</strong> Tabulator uses the ResizeObserver JavaScript API to watch for resizing of the table, at present this is only available on the <span class="param">Chrome</span> browser in versions <span class="param">64</span> and above. In browsers without this functionality, Tabulator will fallback to using the window <span class="param">resize</span> event which will only be able to detect changes on the window size, not on the table element itself.</p>
+
+
+<a class="anchor" id="resize-row"></a>
+<h3>Resizable Rows </h3>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Resize rows functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-resizeRows">resize rows module</a>
+</div>
+
+<p>You can allow the user to manually resize rows by dragging the top or
+ bottom border of a row. To enable this functionality, set the <span class="param">resizableRows</span> property to <span class="param">true</span></p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    resizableRows</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> </span><span class="com">// this option takes a boolean value (default = false)</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="resize-column"></a>
+<h3>Resizable Columns</h3>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Resize columns functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-resizeColumns">resize columns module</a>
+</div>
+
+<p>By default it is possible to manually resize columns by dragging the 
+borders of the column in both the column headers and the cells of the 
+column.</p>
+
+<p>If you want to alter this behaviour you can use the <span class="param">resizableColumns</span> to choose where the resize handles are available. It supports four possible options:</p>
+
+<ul>
+    <li><strong>true</strong> - enable column resizing from both cells and headers</li>
+    <li><strong>"header"</strong> - enable column resizing from headers only</li>
+    <li><strong>"cell"</strong> - enable column resizing from cells only</li>
+    <li><strong>false</strong> - disable column resizing</li>
+</ul>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    resizableColumns</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="com">// this option takes a boolean value (default = true)</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Note:</strong> If you double click on a resizeable border it will resize the column to fit the data it contains.</p>
+
+<h4>Column Specific Resizing</h4>
+
+<p>You can also set column resizability on a per column basis by passing a boolean value to the <span class="param">resizable</span> property in a columns definition object.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> resizable</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">}</span><span class="pln"> </span><span class="com">//prevent this column from being resized</span></pre>
+
+<a class="anchor" id="col-min-width"></a>
+<h4>Minimum Column Width  </h4>
+<p>It is possible to set a minimum column width to prevent resizing columns from becoming too small.</p>
+
+<p>This can be set globally, by setting the <span class="param">columnMinWidth</span> option to the column width when you create your Tabulator.</p>
+
+<p>This option can be overridden on a per column basis by setting the <span class="param">minWidth</span> property on the column definition.</p>
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    columnMinWidth</span><span class="pun">:</span><span class="lit">80</span><span class="pun">,</span><span class="pln"> </span><span class="com">//Minimum column width in px (default = 40)</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<h4>Wrap Column Header Title Text</h4>
+<p>By default Tabulator will try and keep column header titles on one 
+line, truncating the text with ellipsis  if it gets wider that the 
+column.</p>
+<p>If you would like to wrap the text instead then you will need to edit the CSS <span class="param">white-space</span> value for the column headers and set it to <span class="param">normal</span>.</p>
+<pre class="prettyprint lang-css prettyprinted" style=""><span class="pun">.</span><span class="pln">tabulator </span><span class="pun">.</span><span class="pln">tabulator-header </span><span class="pun">.</span><span class="pln">tabulator-col </span><span class="pun">.</span><span class="pln">tabulator-col-content </span><span class="pun">.</span><span class="pln">tabulator-col-title </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">white-space</span><span class="pun">:</span><span class="pln"> normal</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">}</span></pre>
+
+<a class="anchor" id="frozen"></a>
+<h2>Frozen Elements</h2>
+
+<a class="anchor" id="frozen-column"></a>
+<h3>Frozen Columns <a class="example-link" href="http://tabulator.info/examples/4.7?#frozen-col"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Frozen column functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-module">frozen columns module</a>
+</div>
+
+<p>You can freeze the position of columns on the left and right of the table using the <span class="param">frozen</span> property in the column definition array. This will keep the column still when the table is scrolled horizontally.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">[</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">,</span><span class="pln"> frozen</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">},</span><span class="pln"> </span><span class="com">//frozen column on left of table</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"age"</span><span class="pun">},</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Eye Colour"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"eyes"</span><span class="pun">},</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Height"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"height"</span><span class="pun">,</span><span class="pln"> frozen</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">},</span><span class="pln"> </span><span class="com">//frozen column on right of table</span><span class="pln">
+    </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>You can freeze any number of columns on the left or right of the 
+table, but they must be next to eachother in the column definition 
+array. </p>
+
+<p>Tabulator builds the frozen columns by looking through the column 
+definition array from both sides, building up the frozen columns as it 
+see the <span class="param">frozen</span> property. Once a non-frozen column is reached it stops building the frozen list for that side of the table.</p>
+
+<p class="note"><strong>Note: </strong> Frozen columns are locked in place and cannot be reordered by dragging and dropping the column header.</p>
+
+<p class="note"><strong>Note: </strong> At lease one column must not be 
+frozen for the table to render correctly. If you want to freeze all your
+ columns then you will achieve  the same effect by not freezing any.</p>
+
+
+<h4>Frozen Column Groups</h4>
+
+<p>If you are using grouped columns, then you can freeze an entire group by using the <span class="param">frozen</span> property in the parent group definition</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="pun">[</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">
+            title</span><span class="pun">:</span><span class="str">"Column Group"</span><span class="pun">,</span><span class="pln">
+            frozen</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">,</span><span class="com">//frozen column group on left of table</span><span class="pln">
+            columns</span><span class="pun">:[</span><span class="pln">
+                </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Name"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"name"</span><span class="pun">},</span><span class="pln">
+                </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Age"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"age"</span><span class="pun">},</span><span class="pln">
+            </span><span class="pun">]</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Eye Colour"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"eyes"</span><span class="pun">},</span><span class="pln">
+        </span><span class="pun">{</span><span class="pln">title</span><span class="pun">:</span><span class="str">"Height"</span><span class="pun">,</span><span class="pln"> field</span><span class="pun">:</span><span class="str">"height"</span><span class="pun">,</span><span class="pln"> frozen</span><span class="pun">:</span><span class="kwd">true</span><span class="pun">},</span><span class="pln"> </span><span class="com">//frozen column on right of table</span><span class="pln">
+    </span><span class="pun">]</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Note: </strong> You cannot freeze individual columns in a column group, either the entire group is frozen or none of the columns are</p>
+
+
+<a class="anchor" id="frozen-row"></a>
+<h3>Frozen Rows  <a class="example-link" href="http://tabulator.info/examples/4.7?#frozen-row"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h3>
+
+<div class="alert alert-success extension-info" role="alert">
+  <i class="fa fa-cubes"></i>
+  Frozen row functionality is provided by the <a href="http://tabulator.info/docs/4.7/modules/#module-frozenRows">frozen rows module</a>
+</div>
+
+<p>You can freeze a row at the top of the table by calling the <span class="param">freeze</span> function on the <a href="#component-row">Row Component</a> of any row. This will insert the row above the scrolling portion of the table in the table header.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">row</span><span class="pun">.</span><span class="pln">freeze</span><span class="pun">();</span></pre>
+
+<p>A frozen row can be unfrozen using the <span class="param">unfreeze</span> function on the <a href="#component-row">Row Component</a> of any row. This will remove the row from the table header and re-insert it back in the table.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">row</span><span class="pun">.</span><span class="pln">unfreeze</span><span class="pun">();</span></pre>
+
+<p class="note"><strong>Note: </strong> Freezing or unfreezing a row will redraw the table.</p>
+
+
+<a class="anchor" id="redraw"></a>
+<h2>Redrawing the table</h2>
+<p>If the size of the element containing the Tabulator changes <i>(and you are not able to use the in built auto-resize functionality)</i>
+ or you create a table before its containing element is visible, it will
+ necessary to redraw the table to make sure the rows and columns render 
+correctly.</p>
+
+<p>This can be done by calling the <span class="param">redraw</span> method. For example, to trigger a redraw whenever the viewport width is changed:</p>
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">window</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'resize'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    table</span><span class="pun">.</span><span class="pln">redraw</span><span class="pun">();</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p>The <span class="param">redraw</span> function also has an optional boolean argument that when set to <span class="param">true</span> triggers a full rerender of the table including all data on all rows.</p>
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">window</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'resize'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(){</span><span class="pln">
+    table</span><span class="pun">.</span><span class="pln">redraw</span><span class="pun">(</span><span class="kwd">true</span><span class="pun">);</span><span class="pln"> </span><span class="com">//trigger full rerender including all data and rows</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+
+<a class="anchor" id="virtual-dom"></a>
+<h2>Virtual DOM  <a class="example-link" href="http://tabulator.info/examples/4.7?#virtual-dom"> <button><i class="fa fa-hand-pointer"></i> Try Interactive Demo</button></a></h2>
+
+<p>Tabulator renders its table using a Virtual DOM, this means that it 
+only renders the rows you seen in the table (plus a few above and below 
+the current view) and creates and destroys the rows as you scroll 
+through the table.</p>
+
+<p>This allows tabulator to handle thousands of rows with no overhead as it only processes the information it needs  to display.</p>
+
+<p>A detailed description of how the Virual DOM works can be found in the <a href="http://tabulator.info/docs/4.7/virtual-dom">Architecture Concepts Section</a></p>
+
+<p class="note"><strong>Slow Rendering:</strong> It is worth noting that
+ if you are loading a lot of rows into your table without a height set 
+then it may result is blocking of the browser and slow render speeds as 
+it takes a lot of memory to draw 100's of rows onto the screen.</p>
+
+<p class="note"><strong>External Event Bindings: </strong>It is not 
+possible to externally add event bindings to elements in the table 
+because they are created and destroyed  by Tabulator as needed. The good
+ news is there are callbacks and options to register almost  every 
+binding through the setup options.</p>
+
+<h4>Standard DOM Exceptions  </h4>
+<p>When pagination is enabled Tabulator will revert to using classic DOM
+ rendering as it will only be displaying one page at a time. This will 
+render all rows at once with no vertical scroll bar.</p>
+
+<a class="anchor" id="virtual-dom-buffer"></a>
+<h3>Render Buffer </h3>
+<p>The virtual DOM renders a number of rows above and below the visible 
+rows to ensure a smooth scrolling experience. This buffer will be set at
+ the current of the height of table so there is always and additional 
+tables height worth of rows above and beyond the view.</p>
+
+<p>In some situations, where you have a full screen table with a large 
+number of columns, this can result in slow rendering performance in 
+older browsers. In these situations it is possible to manually set the 
+height of the buffer in pixels using the <span class="param">virtualDomBuffer</span>
+ option. By setting this to a smaller number than the height you can 
+reduce the number of rows that are rendered and increase the performance
+ on older browsers.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    virtualDomBuffer</span><span class="pun">:</span><span class="lit">300</span><span class="pun">,</span><span class="pln"> </span><span class="com">//set virtual DOM buffer to 300px</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Note: </strong> The <span class="param">virtualDomBuffer</span>
+ should only be used as a last resort, by default its value is 
+automatically set by Tabulator to suit the size of the table, the 
+default value should work for 99% of usage cases. If you are 
+experiencing rendering issues it is likely that your table has changed 
+sizes and the <span class="param">redraw</span> function needs to be called <i>(see below)</i>.</p>
+
+
+<a class="anchor" id="virtual-dom-redraw"></a>
+<h3>Redraw Management </h3>
+<p>By default Tabulator will redraw part of the table when changes are made to visible data <i>(eg. adding rows, deleting rows, sorting, etc)</i>.
+ When carrying out lots of actions in quick succession this can cause a 
+degredation of table performance as the table is redrawn several times.</p>
+
+<p>To get around this you can use the <span class="param">blockRedraw</span> and <span class="param">restoreRedraw</span> functions to temporarlity disable all table redraw actions while you are manipulating the table data.</p>
+
+<p>Start by calling the <span class="param">blockRedraw</span> function, this will prevent actions from riggering an update of the Virtual DOM:</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">table</span><span class="pun">.</span><span class="pln">blockRedraw</span><span class="pun">();</span><span class="pln"> </span><span class="com">//block table redrawing</span></pre>
+
+<p>When you have completed your required actions, call the <span class="param">restoreRedraw</span>
+ function. This will restore automatic table redrawing and trigger an 
+appropriate redraw if one was needed as a result of any actions that 
+happened while the redraw was blocked.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">table</span><span class="pun">.</span><span class="pln">restoreRedraw</span><span class="pun">();</span><span class="pln"> </span><span class="com">//restore table redrawing</span></pre>
+
+<p class="note"><strong>Table Resizing</strong> While the table redraw 
+has been disabled, resizing the tables containing element may result in 
+visual corruption of the table until the <span class="param">restoreRedraw</span> function is called</p>
+
+<p class="note"><strong>Redraw Block Duration</strong> It is recomended 
+that you only block table redrawing for short durations while you are 
+performing update actions. leaving the table redraw blocked for long 
+periods of time may result in visual corruption of the table and a poor 
+user experience.</p>
+
+
+<h3>Table Resizing</h3>
+
+<h4>Changing Table Height </h4>
+<p>If you want to manually change the height of the table at any time, you can use the <span class="param">setHeight</span> function, which will also redraw the virtual DOM if necessary.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">table</span><span class="pun">.</span><span class="pln">setHeight</span><span class="pun">(</span><span class="lit">500</span><span class="pun">);</span><span class="pln"> </span><span class="com">//set table height to 500px</span></pre>
+
+<p class="note"><strong>Note: </strong> The <span class="param">setHeight</span> function is not available in classic render mode</p>
+
+<h4>Resizing The Table</h4>
+
+<p>If the table element changes height or width at any point <i>(for example the height is set at a percentage and the user resizes the window)</i>,
+ or if the table data is set while the table element is hidden, 
+Tabulator needs to be told that it should redraw its contents to fit its
+ new size.</p>
+
+<p>Tabulator uses the JavaScript <span class="param">Resize Observer</span>
+ functionality to do this automatically where possible, but this feature
+ has yet to be implemented in all browsers. you can see a list of 
+browser that support this functionality <a href="https://caniuse.com/#search=resize%20observer">here</a>.</p>
+
+<p>If you want to use Tabulator on a browser that does not yet support resize observers, you will need to call the <span class="param">redraw</span> function when resizing/showing your table to ensure that the virtual DOM updates to display the correct number of rows.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="pln">table</span><span class="pun">.</span><span class="pln">redraw</span><span class="pun">();</span></pre>
+
+<a class="anchor" id="virtual-dom-disable"></a>
+<h3>Disabling the Virtual DOM</h3>
+<p>If you need to disable virtual rendering for any reason you can set the <span class="param">virtualDom</span> option to <span class="param">false</span> to force classic rendering.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    virtualDom</span><span class="pun">:</span><span class="kwd">false</span><span class="pun">,</span><span class="pln"> </span><span class="com">//disable virtual DOM rendering</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<h4>Poor User Experience</h4>
+
+<p>Disabling the virtual DOM will render all rows at once with no 
+vertical scroll bar, which could lead to very poor performance in the 
+browser if you are loading a lot of rows into the table.</p>
+
+<p>Without the Virtual DOM, the table may need to be completely redrawn when certain actions are performed <i>(eg. sorting and filtering)</i>,
+ this could lead to a poor user experience. It may take significant time
+ to redraw all the rows in large tables, and may also result in the 
+table changing height during the redraw, which could affect the scroll 
+position of the browser.</p>
+
+<p class="note"><strong>Note: </strong> It is strongly recomended that you <strong>DO NOT</strong> disable the virtual DOM, this functionality is included to help legacy users and those with very specific usage cases</p>
+
+<a class="anchor" id="placeholder"></a>
+<h2>Empty Table Placeholder </h2>
+<p>You can use the <span class="param">placeholder</span> option to 
+display a message to your users when the table has no data set. The 
+function can either take a string to display or, the HTML or DOM Node to
+ display in the empty table.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    placeholder</span><span class="pun">:</span><span class="str">"No Data Available"</span><span class="pun">,</span><span class="pln"> </span><span class="com">//display message to user on empty table</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<a class="anchor" id="footer"></a>
+<h2>Table Footer</h2>
+<p>The footer element that the tables uses for holding pagination elements etc, is automatically generated by Tabulator.</p>
+
+<p>If you want to use your own element for any reason, for example you 
+want to add additional elements to the footer, you can use the <span class="param">footerElement</span> option to pass either a CSS selector, a DOM node, or the HTML for the contents of footer element into the table.</p>
+
+<pre class="prettyprint lang-js prettyprinted" style=""><span class="kwd">var</span><span class="pln"> table </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Tabulator</span><span class="pun">(</span><span class="str">"#example-table"</span><span class="pun">,</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    footerElement</span><span class="pun">:</span><span class="str">"&lt;button&gt;Custom Button&lt;/button&gt;"</span><span class="pun">,</span><span class="pln"> </span><span class="com">//add a custom button to the footer element</span><span class="pln">
+</span><span class="pun">});</span></pre>
+
+<p class="note"><strong>Note: </strong>To ensure correct functioning of the table, it is recommended that you apply the <span class="param">tabulator-footer</span> class to the footer element</p>
+
+<a class="anchor" id="callbacks"></a>
+<h2>Callbacks </h2>
+<p>A range of callbacks are available for tracking progress of table rendering. See the <a href="http://tabulator.info/docs/4.7/callbacks#layout">Layout Callbacks</a> section for more information.</p>
+
+
+	</div>
+
+
+</div>
+
+
+    <hr>
+
+    <footer>
+      <div class="row">
+        <div class="col-lg-12">
+          <p>Copyright © Oli Folkerd 2016 - 2020</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+
+
+
+
+  <!-- Bootstrap Core JavaScript -->
+  <script src="Tabulator_files/bootstrap.js"></script>
+  <script src="Tabulator_files/moment.js"></script>
+  
+  <script src="Tabulator_files/lang-css.js"></script>
+
+    
+  <script type="text/javascript">
+
+    //google analytics tracking code
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-77206751-1', 'auto');
+    ga('send', 'pageview');
+
+    $("#github-link").click(function(){
+      ga('send', 'event', {
+        eventCategory: 'Github Link',
+        eventAction: 'click',
+        eventLabel: 'Github Link',
+        transport: 'beacon'
+      })
+    });
+
+    //track social shares
+    $(".share a").on("click", function(){
+      ga('send', 'event', {
+        eventCategory: 'Social Share',
+        eventAction: 'click',
+        eventLabel: $(this).data("type"),
+        transport: 'beacon'
+      })
+    });
+
+    //track source views
+    $(".view-source").on("click", function(){
+        ga('send', 'event', {
+            eventCategory: 'View Source',
+            eventAction: 'click',
+            eventLabel: $(this).closest("article").prev(".anchor").attr("id"),
+            transport: 'beacon'
+        })
+    });
+
+    //track example lookups
+    $(".example-link").on("click", function(){
+        ga('send', 'event', {
+            eventCategory: 'Interactive Demo',
+            eventAction: 'click',
+            eventLabel: $(this).attr("href").split("#")[1],
+            transport: 'beacon'
+        })
+    });
+
+    //track documentation lookups
+    $(".doc-link").on("click", function(){
+        ga('send', 'event', {
+            eventCategory: 'Documentation Lookup',
+            eventAction: 'click',
+            eventLabel: $(this).attr("href").split("#")[1],
+            transport: 'beacon'
+        })
+    });
+
+    //track sidebar navigation
+    $(".docs-sidenav li a").on("click", function(){
+        ga('send', 'event', {
+            eventCategory: 'Sidebar Nav - Documentation',
+            eventAction: 'click',
+            eventLabel: $(this).attr("href").split("#")[1],
+            transport: 'beacon'
+        });
+    });
+
+  </script>
+
+  
+<script type="text/javascript">
+
+	$(".view-source").on("click", function(){
+		$(this).next(".source").slideToggle();
+	});
+
+	$('body').scrollspy({
+		target: '.docs-sidebar',
+		offset: 40
+	});
+
+	$(".docs-sidenav-detailed h2").click(function(){
+		$(this).closest("li").toggleClass("open");
+	});
+
+	TableLoader.trigger();
+</script>
+
+  
+  <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script> -->
+  <script type="text/javascript" src="Tabulator_files/docsearch.js"></script>
+  <script type="text/javascript"> docsearch({
+    apiKey: '116ec31aae70c056b3267e2e05932dde',
+    indexName: 'tabulator',
+    inputSelector: '#sidebar-search-input',
+    debug: true, // Set debug to true if you want to inspect the dropdown
+    transformData: function(suggestions) {
+      suggestions.forEach(function(sug){
+        for(var i = 0; i <= 6; i++){
+          var key = "lvl" + i;
+          if(sug._highlightResult.hierarchy[key] && sug._highlightResult.hierarchy[key].value){
+            sug._highlightResult.hierarchy[key].value = sug._highlightResult.hierarchy[key].value.replace("Try Interactive Demo", "")
+          }
+        }
+      });
+
+      return suggestions;
+    },
+    algoliaOptions:{
+      clickAnalytics: true,
+    },
+    autocompleteOptions: {
+        // dropdownMenuContainer :"#use-me",
+    }
+  });
+  </script>
+
+
+
+
+
+</body></html>

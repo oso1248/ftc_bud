@@ -1,8 +1,10 @@
 module.exports = (req, res, next) => {
-  // if (req.session && req.session.user) {
-  //   next()
-  // } else {
-  //   res.status(401).json({msg: 'Not this time bro!!!'})
-  // }
-  next()
+  if (req.session && req.session.user) {
+    // console.log('logged in restricted')
+    next()
+  } else {
+    // console.log('not logged in restricted')
+    res.redirect('/login.html')
+  }
+  // next()
 }

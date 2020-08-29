@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<<<<<<< HEAD
-
-  
-  <!-- <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com/axios/dist/axios.min.js "> -->
-
-
-
-
-=======
-  <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://unpkg.com/axios/dist/axios.min.js">
->>>>>>> browserify
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Material</title>
@@ -37,50 +26,50 @@
     
     </nav>
     
-    <form action="something.php" method="POST">
-      <h2>Commodity</h2><input type="text" name="commodity" placeholder="Commodity Name">
+    <form id="addmaterial" action="" method="POST">
+      <h2>Commodity</h2><input id="mtlCommodity" type="text" name="commodity" placeholder="Commodity Name">
 
       <h2>Supplier</h2>
-      <select name="" id="mtlSupplier">
+      <select name="company" id="mtlSupplier">
         <option value="" disabled selected hidden>Select Supplier</option>
       </select>
 
       <h2>Location</h2>
-      <select name="" id="mtlLocation">
+      <select name="location" id="mtlLocation">
         <option value="" disabled selected hidden>Select Location</option>
 
       </select>
 
       <h2>Inventory</h2>
-      <select name="mtlInventory" id="">
+      <select name="inventory" id="mtlInventory">
         <option value="" disabled selected hidden>Select Inventory</option>
         <option value="raw">Raw</option>
         <option value="supply">Supply</option>
       </select>
 
       <h2>Type</h2>
-      <select name="" id="mtlType">
+      <select name="type" id="mtlType">
         <option value="" disabled selected hidden>Select Type</option>
 
       </select>
 
       <h2>Container</h2>
-      <select name="" id="mtlContainer">
+      <select name="container" id="mtlContainer">
         <option value="" disabled selected hidden>Select Container</option>
 
       </select>
 
       <h2>Enviromental</h2>
-      <select name="" id="mtlEnvironmental">
+      <select name="enviro" id="mtlEnvironmental">
         <option value="" disabled selected hidden>Select Environmental</option>
 
       </select>
 
-      <h2>SAP</h2><input type="text" name="mtlSAP" placeholder="SAP">
+      <h2>SAP</h2><input type="text" name="sap" id="mtlSAP" placeholder="SAP">
 
-      <h2>Per Pallet</h2><input type="text" name="mtlPerPallet" placeholder="Per Pallet">
+      <h2>Per Pallet</h2><input type="number" name="per_pallet" id="mtlPerPallet" placeholder="Per Pallet">
 
-      <h2>Unit Total</h2><input type="text" name="mtlUnitTotal" placeholder="Unit Total">
+      <h2>Unit Total</h2><input type="number" name="mtlUnitTotal" placeholder="Unit Total">
 
       <h2>UOM</h2>
       <select name="" id="mtlUOM">
@@ -89,16 +78,16 @@
       </select>
 
       <h2>Active:</h2>
-      <select name="mtlActive" id="">
+      <select name="active" id="mtlActive">
         <option value="" disabled selected hidden>Select Active</option>
         <option value="Yes">Yes</option>
         <option value="No">No</option>
       </select>
 
-      <h2>Threshold</h2><input type="text" name="mtlThreshold" placeholder="Threshold">
+      <h2>Threshold</h2><input type="number" name="threshold" id="mtlThreshold" placeholder="Threshold">
 
       <h2>Note:</h2>
-      <textarea name="mtlText" id="" cols="30" rows="5"></textarea>
+      <textarea name="note" id="mtlText" cols="30" rows="5"></textarea>
 
       <h2>Submit:</h2>
       <button type="submit" name="mtlSubmit" id="mtlSubmit">Add Commodity</button>
@@ -112,15 +101,9 @@
   <! -- End of Wrapper -->
   </div>
 
-<<<<<<< HEAD
-  
-  <script src="../../../../node_modules/axios/lib/axios.js"></script>
-  
-=======
 
   
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
->>>>>>> browserify
+  <script src="../../java/axios/dist/axios.js"></script>
   <script src="../scripts/mtlAddLodad.js"></script>
 </body>
 </html>

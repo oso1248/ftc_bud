@@ -6,23 +6,44 @@ const router = express.Router()
 
 router.get('/', (req, res) => {
   dbCall.userFindAll()
-    .then(users => {
-      res.status(200).json(users)
+    .then(response => {
+      if(response == null) {
+        res.status(200).json({username: 'Empty'})
+      } else {
+        res.status(200).json(response)
+      }
+
     })
     .catch(err => {
-      res.status(500).json({msg: 'errof fetching users'})
+      res.status(500).json({msg: 'error fetching users'})
     })
 })
 
 router.get('/:username', (req, res) => {
   const { username } = req.params
   dbCall.userFindById(username)
-    .then(user => {
-      res.status(200).json(user)
+    .then(response => {
+      if(response == null) {
+        res.status(200).json({username: 'Empty'})
+      } else {
+        res.status(200).json(response)
+      }
     })
     .catch(err => {
       res.status(500).json({msg: 'error fetching user'})
     })
+})
+
+router.patch('/:name', (req, res) => {
+  const { name } = req.params
+  const changes = req.body
+  dbCall.userUpdate(name, changes)
+  .then(user => {
+    res.status(200).json(user)
+  })
+  .catch(err => {
+    res.status(500).json({mgs: 'error updating supplier'})
+  })
 })
 
 module.exports = router
