@@ -16,7 +16,7 @@
 .form input, select, option {
   text-align: center;
   margin: 5px;
-  line-height: 5;
+  /* line-height: 5; */
   width: 40%;
   font-size: 20px;
   height: 44px;
