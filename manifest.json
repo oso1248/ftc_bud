@@ -1,0 +1,43 @@
+{
+  "name": "Bud App",
+  "short_name": "Bud",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#db4938",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "72x72"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "96x96"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png","sizes": "128x128"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "144x144"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "152x152"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "192x192"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "384x384"
+    },
+    {
+      "src": "./front/client/images/bud.png",
+      "type": "image/png", "sizes": "512x512"
+    }
+  ]
+}
