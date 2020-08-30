@@ -24,8 +24,10 @@ function supplierFindById(company) {
 }
 function supplierFindAll() {
   return db('mtl_supplier')
+    .select('company', 'contact', 'email', 'phone', 'address', 'note')
     .orderBy('company')
 }
+
 // update
 function supplierUpdate(company, changes){
   return db('mtl_supplier')

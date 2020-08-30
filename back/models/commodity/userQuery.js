@@ -40,7 +40,11 @@ function userFindAll() {
 
 function userFindById(username) {
  return db('users').where({username: username})
- .first()
+  .first()
+//  return db('users as use')
+//   .join('brewery as brew', 'brew.id', '=', 'use.brewery_id')
+//   .select('use.username', 'use.email', 'use.permissions', 'brew.brewery')
+//   .where({username: username})
 }
 
 // update

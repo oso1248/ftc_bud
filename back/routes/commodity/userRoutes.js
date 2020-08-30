@@ -34,12 +34,13 @@ router.get('/:username', (req, res) => {
     })
 })
 
+
 router.patch('/:name', (req, res) => {
   const { name } = req.params
   const changes = req.body
   dbCall.userUpdate(name, changes)
   .then(user => {
-    res.status(200).json(user)
+    res.status(200).json({msg: 'User updated'})
   })
   .catch(err => {
     res.status(500).json({mgs: 'error updating supplier'})

@@ -209,6 +209,11 @@ async function sendUpdate(ev){
       method: 'PATCH',
       body: JSON.stringify(data)
     })
+    .then(res => res.json())
+    .then(data => {
+      let response = data
+      alert(response.msg)
+    })
 
   } else {
 

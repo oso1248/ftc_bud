@@ -1,6 +1,6 @@
 document.getElementById('addForm').style.display="none"
 document.getElementById('updateForm').style.display="none"
-document.getElementById('viewSuppliers').style.display="none"
+document.getElementById('list').style.display="none"
 const api = '/api/supplier/'
 
 
@@ -14,12 +14,12 @@ function append(parent, e1) {
 
 function add() {
   document.getElementById('updateForm').style.display="none"
-  document.getElementById('viewSuppliers').style.display="none"
+  document.getElementById('list').style.display="none"
   document.getElementById('addForm').style.display="grid"
 }
 function update() {
   document.getElementById('addForm').style.display="none"
-  document.getElementById('viewSuppliers').style.display="none"
+  document.getElementById('list').style.display="none"
   document.getElementById('updateForm').style.display="grid"
   
   const suppliers = document.getElementById('updateCompany')
@@ -43,49 +43,40 @@ function update() {
 function view() {
   document.getElementById('addForm').style.display="none"
   document.getElementById('updateForm').style.display="none"
-  document.getElementById('viewSuppliers').style.display="grid"
+  
 
   const suppliers = document.getElementById('viewSuppliers')
-  suppliers.innerHTML = ''
   fetch(api)
     .then(res => res.json())
     .then(data => {
-      let supplier = data
-      return supplier.map(supply => {
-        let supplier = createNode('div')
-        supplier.className = 'supplier'
+      let tableData = data
+      console.log(tableData)
+      var table = new Tabulator("#list", {
+        height:"309px",
+        layout:"fitDataFill",
+        responsiveLayout:"collapse",
+        data:tableData,
+        columns:[
+        {formatter:"responsiveCollapse", width:30, minWidth:30, hozAlign:"center", resizable:false, headerSort:false},
+        // {title:"Company", field:"company", width:150, responsive:0},
+        // {title:"Contact", field:"contact", hozAlign:"left", sorter:"number", width:125},
+        // {title:"Email", field:"email", width:175, responsive:2},
+        // {title:"Phone", field:"phone", width:125, responsive:2},
+        // {title:"Address", field:"address", width:200, responsive:2},
+        // {title:"Note", field:"note", width:200, responsive:2},
 
-        let company = createNode("h3")
-        company.innerHTML = supply.company
-
-        let contact = createNode('p')
-        contact.innerHTML = supply.contact
-
-        let email = createNode('p')
-        email.innerHTML = supply.email
-
-        let phone = createNode('p')
-        phone.innerHTML = supply.phone
-
-        let address = createNode('p')
-        address.innerHTML = supply.address
-
-        let note = createNode('p')
-        note.innerHTML = supply.note
-
-        
-        append(supplier, company)
-        append(supplier, contact)
-        append(supplier, email)
-        append(supplier, phone)
-        append(supplier, address)
-        append(supplier, note)
-        append(suppliers, supplier)
+        {title:"Company", field:"company", responsive:0},
+        {title:"Contact", field:"contact", hozAlign:"left", responsive:2},
+        {title:"Email", field:"email", responsive:2},
+        {title:"Phone", field:"phone", responsive:2, sorter:"number"},
+        {title:"Address", field:"address", responsive:2},
+        {title:"Note", field:"note", responsive:2},
+        ],
       })
+    
     })
-    .catch(err => {
-      res.status(500).json({mgs: 'viewing supplier'})
-    })
+    .catch(err => console.log('There was an error.'))
+  document.getElementById('list').style.display="block"  
 }
 
 
@@ -109,8 +100,8 @@ async function sendAdd(ev){
       let name = form.elements[i].value
       data[id] = name
     }
-    
-    fetch(api, {
+  
+    fetch('/api/supplier', {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -118,6 +109,18 @@ async function sendAdd(ev){
       method: 'POST',
       body: JSON.stringify(data)
     })
+    .then(res => res.json())
+    .then(data => {
+      let response = data
+      if(response.msg == 'success') {
+        alert('Supplier Added')
+      } else {
+        alert('Error, supplier not added')
+      }
+    })
+    
+  } else {
+    alert(JSON.stringify(fails))
   }
 }
 async function validateAdd (ev){
@@ -155,6 +158,7 @@ async function validateAdd (ev){
   if( address === ""){
       failures.push({input:'address', msg:'Required Field'})
   }
+  
   return failures
 }
 
@@ -163,7 +167,7 @@ function resetUpdate(ev){
   ev.preventDefault();
   document.getElementById('updateForm').reset();
 }
-const sendUpdate = function(ev){
+function sendUpdate(ev){
   ev.preventDefault(); 
   ev.stopPropagation();
   
@@ -180,7 +184,7 @@ const sendUpdate = function(ev){
       })
   }
 }
-const validateUpdate = function(ev){
+function validateUpdate(ev){
   //let valid = true;
   let failures = [];
   //checkbox (or radio buttons grouped by name)
@@ -218,6 +222,7 @@ const validateUpdate = function(ev){
   //return a boolean || an object with details about the failures
   return failures;
 }
+
 
 
 

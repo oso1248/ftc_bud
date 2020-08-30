@@ -4,8 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Suppliers</title>
+
   <link rel="stylesheet" href="../../../styles/styles.css">
   <link rel="stylesheet" href="../styles/suppliers.css">
+
+  <script src="../../../java/tabulator/tabulator.min.js"></script>
+  <link rel="stylesheet" href="../../../java/tabulator/tabulator.min.css">
+
 </head>
 
 <body>
@@ -20,11 +25,11 @@
     <nav class="main-nav">
       <ul class="">
         <li><a href="../../../index.html">Home</a></li>
-        <li><a href="">Brewhouse</a></li>
-        <li><a href="">Finishing</a></li>
-        <li><a href="">Craft</a></li>
+        <li><a href="../../Brew/brew.html">Brewhouse</a></li>
+        <li><a href="../../Fini/fini.html">Finishing</a></li>
+        <li><a href="../../Craft/craft.html">Craft</a></li>
         <li><a href="../material.html">Materials</a></li>
-        <li><a href="" id="logout">Log Out</a></li>
+        <li><a href="../../../java/app.js" id="logout">Log Out</a></li>
       </ul>
     </nav> 
   </div><!-- end of container1 -->
@@ -126,11 +131,7 @@
     </form>
 
 
-    <div class="viewSuppliers" id="viewSuppliers">
-      <!-- suppliers appended here -->
-    </div>
-
-
+    <div id="list"></div>
   </div><!-- end container2 -->
   
 

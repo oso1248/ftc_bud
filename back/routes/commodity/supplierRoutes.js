@@ -10,12 +10,13 @@ router.post('/', (req, res) => {
   const jsonData = req.body
   dbCall.supplierAdd(jsonData)
     .then(supplier => {
-      res.status(200).json(supplier)
+      res.status(200).json({msg: 'success'})
     })
     .catch(err => {
-      res.status(500).json({msg: 'error adding supplier'})
+      res.status(500).json({msg: 'error'})
     })
 })
+
 // read
 router.get('/', (req, res) => {
   dbCall.supplierFindAll()
