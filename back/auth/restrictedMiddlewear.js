@@ -6,6 +6,5 @@ module.exports = (req, res, next) => {
   //   // console.log('not logged in restricted')
   //   res.redirect('/login.html')
   // }
-
   next()
 }
