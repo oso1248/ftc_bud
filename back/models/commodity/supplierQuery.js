@@ -19,15 +19,15 @@ async function supplierAdd(jsonData){
 // read
 function supplierFindById(company) {
   return db('mtl_supplier')
-  .where({company: company})
-  .first()
+    .select('contact', 'email', 'phone', 'address', 'note')
+    .where({company: company})
+    .first()
 }
 function supplierFindAll() {
   return db('mtl_supplier')
     .select('company', 'contact', 'email', 'phone', 'address', 'note')
     .orderBy('company')
 }
-
 // update
 function supplierUpdate(company, changes){
   return db('mtl_supplier')

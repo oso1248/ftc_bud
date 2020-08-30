@@ -54,10 +54,10 @@ router.patch('/:name', (req, res) => {
   const changes = req.body
   dbCall.supplierUpdate(name, changes)
   .then(supplier => {
-    res.status(200).json(supplier)
+    res.status(200).json({msg: 'pass'})
   })
   .catch(err => {
-    res.status(500).json({mgs: 'error updating supplier'})
+    res.status(500).json({mgs: 'error'})
   })
 })
 
